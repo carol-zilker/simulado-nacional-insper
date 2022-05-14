@@ -97,7 +97,7 @@ html_card_whatsapp="""
     <div class="card">
       <div class="card-body" style="border-radius: 10px 10px 10px 10px; background: #a5ffa5; padding-top: 12px; width: 280px;
        height: 50px;">
-        <p class="card-title" style="background-color:#a5ffa5; color:#008800; font-size:16px; font-family:Georgia; text-align: center; padding: 0px 0;">Whatsapp: (11) 93046-8509</p>
+        <p class="card-title" style="background-color:#a5ffa5; color:#008800; font-size:16px; font-family:Georgia; text-align: center; padding: 0px 0;">Whatsapp: (32) 99802-5088</p>
       </div>
     </div>
     """
