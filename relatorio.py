@@ -2801,7 +2801,7 @@ if login_aluno != '':
                 mode="number+delta",
                 value=round(base_resultados_2fase_aluno_debate2['Nota 2º fase'].mean(),1),
                 number={'suffix': "", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
-                delta={'position': "bottom", 'reference': int(round(truncar(base_resultados_2fase_debate['Nota 2º fase'].mean(),-1),0)), 'relative': False},
+                delta={'position': "bottom", 'reference': int(round(truncar(base_resultados_2fase_debate2aux['Nota 2º fase'].mean(),-1),0)), 'relative': False},
                 domain={'x': [0, 1], 'y': [0, 1]}))
             fig_c1.update_layout(autosize=False,
                                  width=350, height=90, margin=dict(l=20, r=20, b=20, t=50),
@@ -2999,6 +2999,7 @@ if login_aluno != '':
     """
     base_resultados_2fase_aluno_arguicao = base_resultados_2fase_arguicao2.sort_values(by = 'Nota 2º fase', ascending = False).reset_index(drop = True).reset_index()
     base_resultados_2fase_aluno_arguicao.rename(columns = {'index':'Classificação'}, inplace = True)
+    st.dataframe(base_resultados_2fase_aluno_arguicao)
     base_resultados_2fase_aluno_arguicao2 = base_resultados_2fase_aluno_arguicao[base_resultados_2fase_aluno_arguicao['Login do aluno(a)'] == login_aluno].reset_index()
     base_resultados_2fase_aluno_arguicao2['Classificação'][0] = base_resultados_2fase_aluno_arguicao2['Classificação'][0] + 1
     
