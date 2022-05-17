@@ -2087,8 +2087,12 @@ if login_aluno != '':
     classificacao_aluno_red = base_redacao_disciplina2[base_redacao_disciplina2['Login do aluno(a)'] == login_aluno].reset_index()
     if classificacao_aluno_red['level_0'][0] > numero_candidatos:
         classificacao_aluno_red['level_0'][0] = numero_candidatos - 1
-    ponto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0)).find('.')
-    texto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0))[0:ponto]
+        ponto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]+1))/numero_candidatos,0)).find('.')
+        texto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]+1))/numero_candidatos,0))[0:ponto]
+    else:
+        ponto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0)).find('.')
+        texto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0))[0:ponto]
+    
     
     html_card_header_destaques_red="""
     <div class="card">
