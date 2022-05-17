@@ -3055,8 +3055,8 @@ if login_aluno != '':
     st.markdown(html_br, unsafe_allow_html=True)
     st.markdown(html_br, unsafe_allow_html=True)
 
-    ponto = str(round(100*(numero_candidatos-(base_resultados_2fase_aluno_debate2['Classificação'][0]-1))/numero_candidatos,0)).find('.')
-    texto = str(round(100*(numero_candidatos-(base_resultados_2fase_aluno_debate2['Classificação'][0]-1))/numero_candidatos,0))[0:ponto]
+    ponto = str(round(100*(numero_candidatos-(base_resultados_2fase_aluno_arguicao2['Classificação'][0]-1))/numero_candidatos,0)).find('.')
+    texto = str(round(100*(numero_candidatos-(base_resultados_2fase_aluno_arguicao2['Classificação'][0]-1))/numero_candidatos,0))[0:ponto]
     html_card_header_destaques_gerais="""
     <div class="card">
       <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 60px; width: 495px;
