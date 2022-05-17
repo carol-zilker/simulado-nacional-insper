@@ -1750,13 +1750,6 @@ if login_aluno != '':
                 <th>"""+str(ciencias_tabela3['Resultado Geral'][22])+"""</th>
                 <th>"""+str(ciencias_tabela3['Status'][22])+"""</th>
             </tr>
-            <tr style="background-color:#f7d4f0; height: 42px; color:#C81F6D; font-size: 16px;text-align: center">
-                <th>"""+str(ciencias_tabela3['Assunto'][23])+"""</th>
-                <th>"""+str(ciencias_tabela3['Quantidade de questões'][23])+"""</th>
-                <th>"""+str(ciencias_tabela3['Resultado Individual'][23])+"""</th>
-                <th>"""+str(ciencias_tabela3['Resultado Geral'][23])+"""</th>
-                <th>"""+str(ciencias_tabela3['Status'][23])+"""</th>
-            </tr>
             </tr>
             </table>
             """
