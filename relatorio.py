@@ -2086,12 +2086,10 @@ if login_aluno != '':
     #st.dataframe(base_redacao_disciplina2)
     classificacao_aluno_red = base_redacao_disciplina2[base_redacao_disciplina2['Login do aluno(a)'] == login_aluno].reset_index()
     if classificacao_aluno_red['level_0'][0] > numero_candidatos:
-        classificacao_aluno_red['level_0'][0] = numero_candidatos - 1
-        ponto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]+1))/numero_candidatos,0)).find('.')
-        texto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]+1))/numero_candidatos,0))[0:ponto]
-    else:
-        ponto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0)).find('.')
-        texto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0))[0:ponto]
+        classificacao_aluno_red['level_0'][0] = numero_candidatos
+    
+    ponto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0)).find('.')
+    texto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0))[0:ponto]
     
     
     html_card_header_destaques_red="""
@@ -2615,8 +2613,12 @@ if login_aluno != '':
     base_resultados_2fase_aluno.rename(columns = {'index':'Classificação'}, inplace = True)
     st.dataframe(base_resultados_2fase_aluno)
     base_resultados_2fase_aluno2 = base_resultados_2fase_aluno[base_resultados_2fase_aluno['Login do aluno(a)'] == login_aluno].reset_index()
-    base_resultados_2fase_aluno2['Classificação'][0] = base_resultados_2fase_aluno2['Classificação'][0] + 1
-    
+    for i in range(len(base_resultados_2fase_aluno2['Nota 2º fase'])):
+        if base_resultados_2fase_aluno2['Nota 2º fase']:
+            base_resultados_2fase_aluno2['Classificação'][0] = numero_candidatos
+        else:
+            base_resultados_2fase_aluno2['Classificação'][0] = base_resultados_2fase_aluno2['Classificação'][0] + 1
+    base_resultados_2faseaux = base_resultados_2fase[base_resultados_2fase['Nota 2º fase'] > 0]
     ### Block 1#########################################################################################
     with st.container():
         col1, col2, col3, col4, col5, col6, col7 = st.columns([1,20,1,20,1,20,1])
@@ -2628,7 +2630,7 @@ if login_aluno != '':
                 mode="number+delta",
                 value=round(base_resultados_2fase_aluno2['Nota 2º fase'].mean(),1),
                 number={'suffix': "", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
-                delta={'position': "bottom", 'reference': int(round(truncar(base_resultados_2fase['Nota 2º fase'].mean(),-1),0)), 'relative': False},
+                delta={'position': "bottom", 'reference': int(round(truncar(base_resultados_2faseaux['Nota 2º fase'].mean(),-1),0)), 'relative': False},
                 domain={'x': [0, 1], 'y': [0, 1]}))
             fig_c1.update_layout(autosize=False,
                                  width=350, height=90, margin=dict(l=20, r=20, b=20, t=50),
