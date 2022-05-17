@@ -2005,9 +2005,9 @@ if login_aluno != '':
         base_redacao['Acerto'][i] = base_redacao['Nota na questão'][i]/base_redacao['Valor da questão'][i]
     
     base_redacao2 = base_redacao[base_redacao['Nota na questão'] >= 0]
-    base_redacao3 = base_redacao[base_redacao['Nota na questão'] > 0]
+    base_redacao_aux = base_redacao[base_redacao['Nota na questão'] > 0]
 
-    redacao_detalhes_media = base_redacao3.groupby('Competência').mean().reset_index()
+    redacao_detalhes_media = base_redacao_aux.groupby('Competência').mean().reset_index()
     
     redacao_aluno = base_redacao2[base_redacao2['Login do aluno(a)'] == login_aluno]
     
@@ -2160,10 +2160,15 @@ if login_aluno != '':
         st.markdown(html_br, unsafe_allow_html=True)
 
         base_redacao3 = base_redacao2.groupby('Login do aluno(a)').sum().reset_index()
-        base_redacao3['Nota na questão'] = 200 + 0.8*base_redacao3['Nota na questão'] 
+        for i in range(len(base_redacao3['Nota na questão'])):
+            if base_redacao3['Nota na questão'][i] == 0:
+                base_redacao3['Nota na questão'][i] == 0
+            else: 
+                base_redacao3['Nota na questão'] = 200 + 0.8*base_redacao3['Nota na questão'] 
 
         base_redacao4 = base_redacao3[base_redacao3['Login do aluno(a)'] == login_aluno]
-        base_redacao5 = base_redacao3.mean()
+        base_redacao3aux = base_redacao3[base_redacao3['Nota na questão'] > 0]
+        base_redacao5 = base_redacao3aux.mean()
 
         with st.container():
             col1, col2, col3, col4, col5 = st.columns([9,25,2,25,4])
