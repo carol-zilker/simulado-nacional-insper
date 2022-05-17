@@ -59,7 +59,7 @@ def tabela_questoes_arguicao(dataframe,coluna1,coluna2,coluna3,cor_texto,cor_bac
       </tr>
        </table>
     """
-    return html_table_questoes_debate
+    return html_table_questoes_arguicao
 
 def tabela_questoes_debate(dataframe,coluna1,coluna2,coluna3,coluna4,coluna5,coluna6,coluna7,cor_texto,cor_back):
     html_table_questoes_debate=""" 
