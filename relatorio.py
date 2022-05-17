@@ -2869,7 +2869,7 @@ if login_aluno != '':
             st.write("")
 
     base_resultados_2fase_debate3 = base_resultados_2fase_debate2[base_resultados_2fase_debate2['Login do aluno(a)'] == login_aluno].reset_index()
-    st.dataframe(base_resultados_2fase_debate2)
+    #st.dataframe(base_resultados_2fase_debate2)
     data = [
     {'Temas': 'Tema 1',  'Comunicação Assertiva - Resultado Individual': base_resultados_2fase_debate3['Tema 1 - Comunicação assertiva'][0], 'Comunicação Assertiva - Resultado Geral': round(base_resultados_2fase_debate2['Tema 1 - Comunicação assertiva'].mean(),1), 'Interação com pessoas - Resultado Individual':base_resultados_2fase_debate3['Tema 1 - Interação com pessoas'][0], 'Interação com pessoas - Resultado Geral': round(base_resultados_2fase_debate2['Tema 1 - Interação com pessoas'].mean(),1), 'Pensamento crítico - Resultado Individual': base_resultados_2fase_debate3['Tema 1 - Pensamento crítico'][0], 'Pensamento crítico - Resultado Geral': round(base_resultados_2fase_debate2['Tema 1 - Pensamento crítico'].mean(),1)},
 
@@ -2887,7 +2887,7 @@ if login_aluno != '':
     ]
 
     tabela_debate = pd.DataFrame(data)
-    
+    st.dataframe(tabela_debate)
     for i in range(len(tabela_debate)):
         if (tabela_debate['Comunicação Assertiva - Resultado Individual'][i]+ tabela_debate['Interação com pessoas - Resultado Individual'][i] + tabela_debate['Pensamento crítico - Resultado Individual'][i]) > (tabela_debate['Comunicação Assertiva - Resultado Geral'][i] + tabela_debate['Interação com pessoas - Resultado Geral'][i] + tabela_debate['Pensamento crítico - Resultado Geral'][i]):
             cor_back.append('#ffb1b1')
