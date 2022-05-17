@@ -2925,7 +2925,7 @@ if login_aluno != '':
     tabela_final = tabela_questoes_debate(tabela_debate,'Temas', 'Comunicação Assertiva - Resultado Individual', 'Comunicação Assertiva - Resultado Geral', 'Interação com pessoas - Resultado Individual', 'Interação com pessoas - Resultado Geral', 'Pensamento crítico - Resultado Individual', 'Pensamento crítico - Resultado Geral', cor_texto,cor_back)
         
     with st.container():
-            col1, col2, col3 = st.columns([3, 20, 3])
+            col1, col2, col3 = st.columns([8, 20, 8])
             with col1:
                 st.write("")
             with col2:
@@ -3002,7 +3002,7 @@ if login_aluno != '':
     base_resultados_2fase_aluno_arguicao.rename(columns = {'index':'Classificação'}, inplace = True)
     #st.dataframe(base_resultados_2fase_aluno_arguicao)
     base_resultados_2fase_aluno_arguicao2 = base_resultados_2fase_aluno_arguicao[base_resultados_2fase_aluno_arguicao['Login do aluno(a)'] == login_aluno].reset_index()
-    st.dataframe(base_resultados_2fase_aluno_arguicao2)
+    #st.dataframe(base_resultados_2fase_aluno_arguicao2)
     if base_resultados_2fase_aluno_arguicao2['Nota 2º fase'][0] == 0:
         base_resultados_2fase_aluno_arguicao2['Classificação'][0] = numero_candidatos + 1
     else:
@@ -3135,7 +3135,7 @@ if login_aluno != '':
     tabela_final2 = tabela_questoes_arguicao(tabela_arguicao,'Temas', 'Aprender a aprender - Resultado Individual', 'Aprender a aprender - Resultado Geral', cor_texto,cor_back)
         
     with st.container():
-            col1, col2, col3 = st.columns([3, 20, 3])
+            col1, col2, col3 = st.columns([8, 20, 8])
             with col1:
                 st.write("")
             with col2:
