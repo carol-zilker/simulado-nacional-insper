@@ -3109,3 +3109,37 @@ if login_aluno != '':
             st.markdown(html_card_header_destaques_gerais, unsafe_allow_html=True)
         with col5:
             st.write("")
+
+    base_resultados_2fase_arguicao3 = base_resultados_2fase_arguicao2[base_resultados_2fase_arguicao2['Login do aluno(a)'] == login_aluno].reset_index()
+    #st.dataframe(base_resultados_2fase_debate2)
+    data2 = [
+    {'Temas': 'Tema 1',  'Aprender a aprender - Resultado Individual': base_resultados_2fase_arguicao3['Tema 1 - Aprender a aprender'][0], 'Aprender a aprender - Resultado Geral': round(base_resultados_2fase_arguicao2aux['Tema 1 - Aprender a aprender'].mean(),1)},
+
+    {'Temas': 'Tema 2', 'Aprender a aprender - Resultado Individual': base_resultados_2fase_arguicao3['Tema 2 - Aprender a aprender'][0], 'Aprender a aprender - Resultado Geral': round(base_resultados_2fase_arguicao2aux['Tema 2 - Aprender a aprender'].mean(),1)},
+
+    {'Temas': 'Total', 'Aprender a aprender - Resultado Individual': round((base_resultados_2fase_arguicao3['Tema 1 - Aprender a aprender'][0]+base_resultados_2fase_arguicao3['Tema 2 - Aprender a aprender'][0])/2,1), 'Aprender a aprender - Resultado Geral': round((base_resultados_2fase_arguicao2aux['Tema 1 - Aprender a aprender'].mean() + base_resultados_2fase_arguicao2aux['Tema 2 - Aprender a aprender'].mean())/2,1)}
+    ]
+    tabela_arguicao = pd.DataFrame(data2)
+    cor_back = []
+    cor_texto = []
+    for i in range(len(tabela_arguicao)):
+        if (tabela_debate['Aprender a aprender - Resultado Individual'][i] > tabela_debate['Aprender a aprender - Resultado Geral'][i]):
+            cor_back.append('#a5ffa5')
+            cor_texto.append('#008800')
+        else:
+            cor_back.append('#ffb1b1')
+            cor_texto.append('#a80000')
+
+    #tabela_detalhes_aluno_debate = tabela_debate.sort_values(by = 'Temas', ascending = True).reset_index()
+        
+    tabela_final2 = tabela_questoes_arguicao(tabela_arguicao,'Temas', 'Aprender a aprender - Resultado Individual', 'Aprender a aprender - Resultado Geral', cor_texto,cor_back)
+        
+    with st.container():
+            col1, col2, col3 = st.columns([3, 20, 3])
+            with col1:
+                st.write("")
+            with col2:
+                st.markdown(tabela_final2, unsafe_allow_html=True)
+            with col3:
+                st.write("")
+    
