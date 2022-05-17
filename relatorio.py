@@ -135,7 +135,7 @@ st.markdown(html_header, unsafe_allow_html=True)
 
 base_matriz = pd.read_csv('./Jazz Vestibular - 2022.2 - Operação - [RELATÓRIO] Matriz de Questões.csv')
 base_resultados = pd.read_csv('./Jazz Vestibular - 2022.2 - Operação - [RELATÓRIO] Base de Dados.csv')
-base_resultados_2fase = pd.read_csv('./Jazz Vestibular - 2022.2 - Operação - [RELATÓRIO] Base de Dados 2 fase.csv')
+base_resultados_2fase = pd.read_csv('./Jazz Vestibular - 2022.2 - Operacao - [RELATORIO] Base de Dados 2 fase.csv')
 
 ### Turmas
 
@@ -2886,7 +2886,7 @@ if login_aluno != '':
     tabela_debate = pd.DataFrame(data)
     
     for i in range(len(tabela_debate)):
-        if (tabela_debate['Comunicação Assertiva - Resultado Individual'][i] < tabela_debate['Comunicação Assertiva - Resultado Geral'][i] and tabela_debate['Interação com pessoas - Resultado Individual'][i] < tabela_debate['Interação com pessoas - Resultado Geral'][i] and tabela_debate['Pensamento crítico - Resultado Individual'][i] < tabela_debate['Pensamento crítico - Resultado Geral'][i]):# and tabela_debate['Interação com pessoas - Resultado Individual'][i] > tabela_debate['Interação com pessoas - Resultado Geral'][i] and tabela_debate['Pensamento crítico - Resultado Individual'][i] > tabela_debate['Pensamento crítico - Resultado Geral'][i]):
+        if (tabela_debate['Comunicação Assertiva - Resultado Individual'][i]+ tabela_debate['Interação com pessoas - Resultado Individual'][i] + tabela_debate['Pensamento crítico - Resultado Individual'][i]) > (tabela_debate['Comunicação Assertiva - Resultado Geral'][i] + tabela_debate['Interação com pessoas - Resultado Geral'][i] + tabela_debate['Pensamento crítico - Resultado Individual'][i]):
             cor_back.append('#ffb1b1')
             cor_texto.append('#a80000')
         else:
