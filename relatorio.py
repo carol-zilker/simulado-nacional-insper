@@ -3295,7 +3295,7 @@ if login_aluno != '':
             st.write("")
         with col2:
             # create the bins
-            counts, bins = np.histogram(resultado_finalaux['Nota 2º fase'], bins=range(0, 1100, 100))
+            counts, bins = np.histogram(resultado_finalaux['Nota Final'], bins=range(0, 1100, 100))
             bins = 0.5 * (bins[:-1] + bins[1:])
             fig = px.bar(x=bins, y=counts, labels={'x':'Nota no simulado', 'y':'Número de alunos'})
             fig.update_layout(title={'text': "Distribuição de notas", 'x': 0.5}, paper_bgcolor="#FFF0FC", 
@@ -3307,8 +3307,8 @@ if login_aluno != '':
                                        xanchor="left",
                                        x=0.01),
                            margin=dict(l=1, r=1, b=1, t=30))
-            fig.add_vline(x=int(round(resultado_final_aluno2['Nota 2º fase'].mean(),1)), line_width=7, line_dash="dash", line_color="#FF00CE", annotation_text="Você está aqui!", annotation_position="top right")
-            fig.add_vline(x=int(round(truncar(resultado_finalaux['Nota 2º fase'].mean(),-1),0)), line_width=7, line_dash="dash", line_color="#fedc00", annotation_text="Média", annotation_position="top right")
+            fig.add_vline(x=int(round(resultado_final_aluno2['Nota Final'].mean(),1)), line_width=7, line_dash="dash", line_color="#FF00CE", annotation_text="Você está aqui!", annotation_position="top right")
+            fig.add_vline(x=int(round(truncar(resultado_finalaux['Nota Final'].mean(),-1),0)), line_width=7, line_dash="dash", line_color="#fedc00", annotation_text="Média", annotation_position="top right")
             fig.update_xaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=6, rangemode="tozero",
                           showgrid=False, gridwidth=0.5, gridcolor='#f6f6f6')
             fig.update_yaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=10, rangemode="tozero",
