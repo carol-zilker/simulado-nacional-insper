@@ -2611,7 +2611,7 @@ if login_aluno != '':
     """
     base_resultados_2fase_aluno = base_resultados_2fase.sort_values(by = 'Nota 2º fase', ascending = False).reset_index(drop = True).reset_index()
     base_resultados_2fase_aluno.rename(columns = {'index':'Classificação'}, inplace = True)
-    st.dataframe(base_resultados_2fase_aluno)
+    #st.dataframe(base_resultados_2fase_aluno)
     base_resultados_2fase_aluno2 = base_resultados_2fase_aluno[base_resultados_2fase_aluno['Login do aluno(a)'] == login_aluno].reset_index()
     for i in range(len(base_resultados_2fase_aluno2['Nota 2º fase'])):
         if base_resultados_2fase_aluno2['Nota 2º fase'][i] == 0:
@@ -2726,7 +2726,7 @@ if login_aluno != '':
     base_resultados_2fase_debate2 = base_resultados_2fase_debate.drop(columns = ['Tema 1 - Aprender a aprender','Tema 2 - Aprender a aprender'])
    
     base_resultados_2fase_debate2['Nota 2º fase'] = 1000*(750*base_resultados_2fase_debate2['Tema 1 - Comunicação assertiva']/12 + 750*base_resultados_2fase_debate2['Tema 1 - Interação com pessoas']/12 + 750*base_resultados_2fase_debate2['Tema 1 - Pensamento crítico']/12 + 750*base_resultados_2fase_debate2['Tema 2 - Comunicação assertiva']/12 +  750*base_resultados_2fase_debate2['Tema 2 - Interação com pessoas']/12 + 750*base_resultados_2fase_debate2['Tema 2 - Pensamento crítico']/12 + 750*base_resultados_2fase_debate2['Tema 3 - Comunicação assertiva']/12 + 750*base_resultados_2fase_debate2['Tema 3 - Interação com pessoas']/12 + 750*base_resultados_2fase_debate2['Tema 3 - Pensamento crítico']/12 + 750*base_resultados_2fase_debate2['Tema 4 - Comunicação assertiva']/12 + 750*base_resultados_2fase_debate2['Tema 4 - Interação com pessoas']/12 + 750*base_resultados_2fase_debate2['Tema 4 - Pensamento crítico']/12)/3000
-    
+    base_resultados_2fase_debate2aux = base_resultados_2fase_debate2[base_resultados_2fase_debate2['Nota 2º fase'] > 0]
     html_header_2fase="""
     <h2 style="font-size:200%; color: #FF00CE; font-family:Georgia"> DEBATE<br>
      <hr style= "  display: block;
@@ -2761,7 +2761,7 @@ if login_aluno != '':
     <div class="card">
       <div class="card-body" style="border-radius: 10px 10px 10px 10px; background: #c5ffff; padding-top: 12px; width: 350px;
        height: 50px;">
-        <p class="card-title" style="background-color:#c5ffff; color:#008181; font-family:Georgia; text-align: center; padding: 0px 0;">Média Geral: """+str(int(round(base_resultados_2fase_debate2['Nota 2º fase'].mean(),0)))+"""</p>
+        <p class="card-title" style="background-color:#c5ffff; color:#008181; font-family:Georgia; text-align: center; padding: 0px 0;">Média Geral: """+str(int(round(base_resultados_2fase_debate2aux['Nota 2º fase'].mean(),0)))+"""</p>
       </div>
     </div>
     """
@@ -2784,7 +2784,10 @@ if login_aluno != '':
     base_resultados_2fase_aluno_debate = base_resultados_2fase_debate2.sort_values(by = 'Nota 2º fase', ascending = False).reset_index(drop = True).reset_index()
     base_resultados_2fase_aluno_debate.rename(columns = {'index':'Classificação'}, inplace = True)
     base_resultados_2fase_aluno_debate2 = base_resultados_2fase_aluno_debate[base_resultados_2fase_aluno_debate['Login do aluno(a)'] == login_aluno].reset_index()
-    base_resultados_2fase_aluno_debate2['Classificação'][0] = base_resultados_2fase_aluno_debate2['Classificação'][0] + 1
+    if base_resultados_2fase_aluno_debate2['Nota 2º fase'] == 0:
+        base_resultados_2fase_aluno_debate2['Classificação'][0] = numero_candidatos + 1
+    else:
+        base_resultados_2fase_aluno_debate2['Classificação'][0] = base_resultados_2fase_aluno_debate2['Classificação'][0] + 1
     
     #st.dataframe(base_resultados_2fase_aluno)
     ### Block 1#########################################################################################
