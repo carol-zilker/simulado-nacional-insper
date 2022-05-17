@@ -2615,7 +2615,7 @@ if login_aluno != '':
     base_resultados_2fase_aluno2 = base_resultados_2fase_aluno[base_resultados_2fase_aluno['Login do aluno(a)'] == login_aluno].reset_index()
     for i in range(len(base_resultados_2fase_aluno2['Nota 2º fase'])):
         if base_resultados_2fase_aluno2['Nota 2º fase'][i] == 0:
-            base_resultados_2fase_aluno2['Classificação'][0] = numero_candidatos
+            base_resultados_2fase_aluno2['Classificação'][0] = numero_candidatos + 1
         else:
             base_resultados_2fase_aluno2['Classificação'][0] = base_resultados_2fase_aluno2['Classificação'][0] + 1
     base_resultados_2faseaux = base_resultados_2fase[base_resultados_2fase['Nota 2º fase'] > 0]
@@ -2649,7 +2649,7 @@ if login_aluno != '':
             st.markdown(html_card_header3, unsafe_allow_html=True)
             fig_c3 = go.Figure(go.Indicator(
                 mode="number",
-                value=base_resultados_2fase_aluno2['Classificação'][0],
+                value=base_resultados_2fase_aluno2['Classificação'][0]+1,
                 number={'suffix': "º", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
                 delta={'position': "bottom", 'reference': 1, 'relative': False},
                 domain={'x': [0, 1], 'y': [0, 1]}))
