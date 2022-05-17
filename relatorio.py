@@ -2566,7 +2566,7 @@ if login_aluno != '':
     #base_resultados_2fase2 = base_resultados_2fase[base_resultados_2fase['Tema 1 - Comunicação assertiva'] > 0]
     
     ### Resultados gerais do aluno
-    base_resultados_2fase = base_resultados_2fase[base_resultados_2fase['Nota 2º fase'] > 0]
+    base_resultados_2fase = base_resultados_2fase[base_resultados_2fase['Nota 2º fase'] >= 0]
     numero_candidatos = len(base_resultados_2fase['Nome do aluno(a)'])
 
     html_card_header1="""
