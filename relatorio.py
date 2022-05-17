@@ -19,7 +19,7 @@
 ### Importação de bibliotecas
 
 from pickle import FALSE
-from tkinter import E
+#from tkinter import E
 import pandas as pd
 import streamlit as st
 import numpy as np
