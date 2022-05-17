@@ -2649,7 +2649,7 @@ if login_aluno != '':
             st.markdown(html_card_header3, unsafe_allow_html=True)
             fig_c3 = go.Figure(go.Indicator(
                 mode="number",
-                value=base_resultados_2fase_aluno2['Classificação'][0]+1,
+                value=base_resultados_2fase_aluno2['Classificação'][0],
                 number={'suffix': "º", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
                 delta={'position': "bottom", 'reference': 1, 'relative': False},
                 domain={'x': [0, 1], 'y': [0, 1]}))
@@ -2689,7 +2689,7 @@ if login_aluno != '':
             st.write("")
         with col2:
             # create the bins
-            counts, bins = np.histogram(base_resultados_2fase['Nota 2º fase'], bins=range(0, 1100, 100))
+            counts, bins = np.histogram(base_resultados_2faseaux['Nota 2º fase'], bins=range(0, 1100, 100))
             bins = 0.5 * (bins[:-1] + bins[1:])
             fig = px.bar(x=bins, y=counts, labels={'x':'Nota no simulado', 'y':'Número de alunos'})
             fig.update_layout(title={'text': "Distribuição de notas", 'x': 0.5}, paper_bgcolor="#FFF0FC", 
@@ -2702,7 +2702,7 @@ if login_aluno != '':
                                        x=0.01),
                            margin=dict(l=1, r=1, b=1, t=30))
             fig.add_vline(x=int(round(base_resultados_2fase_aluno2['Nota 2º fase'].mean(),1)), line_width=7, line_dash="dash", line_color="#FF00CE", annotation_text="Você está aqui!", annotation_position="top right")
-            fig.add_vline(x=int(round(truncar(base_resultados_2fase['Nota 2º fase'].mean(),-1),0)), line_width=7, line_dash="dash", line_color="#fedc00", annotation_text="Média", annotation_position="top right")
+            fig.add_vline(x=int(round(truncar(base_resultados_2faseaux['Nota 2º fase'].mean(),-1),0)), line_width=7, line_dash="dash", line_color="#fedc00", annotation_text="Média", annotation_position="top right")
             fig.update_xaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=6, rangemode="tozero",
                           showgrid=False, gridwidth=0.5, gridcolor='#f6f6f6')
             fig.update_yaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=10, rangemode="tozero",
