@@ -3144,5 +3144,5 @@ if login_aluno != '':
     st.dataframe(primeira_fase2)
     st.dataframe(segunda_fase2)
 
-    resultado_final = pd.merge(segunda_fase, primeira_fase, on = 'Login do aluno(a)', how = 'left')
+    resultado_final = pd.merge(segunda_fase2, primeira_fase2, on = 'Login do aluno(a)', how = 'left')
     st.dataframe(resultado_final)
