@@ -2162,9 +2162,7 @@ if login_aluno != '':
         st.write('aaa')
         base_redacao3 = base_redacao2.groupby('Login do aluno(a)').sum().reset_index()
         for i in range(len(base_redacao3['Nota na questão'])):
-            if base_redacao3['Nota na questão'][i] == 0:
-                base_redacao3['Nota na questão'][i] == 0
-            else: 
+            if base_redacao3['Nota na questão'][i] > 0:
                 base_redacao3['Nota na questão'][i] = 200 + 0.8*base_redacao3['Nota na questão'][i]
         base_redacao4 = base_redacao3[base_redacao3['Login do aluno(a)'] == login_aluno]
         base_redacao3aux = base_redacao3[base_redacao3['Nota na questão'] > 0]
