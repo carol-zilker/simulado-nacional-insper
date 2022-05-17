@@ -220,10 +220,10 @@ if len(login_aluno) > 0:
       border-width: 1.5px;"></h2>
     """
     st.markdown(html_download_pdfs, unsafe_allow_html=True)
-    #if turma_aluno['Turma'][0] == turma_eng or turma_aluno['Turma'][0] == turma_cien:
-    #    st.markdown(get_binary_file_downloader_html('Simulado Nacional Insper - 1 fase 2022.2 - Engenharias e Ciências da Computação.pdf', 'Simulado Nacional Insper 1º fase'), unsafe_allow_html=True)
-    #else:
-    #    st.markdown(get_binary_file_downloader_html('Simulado Nacional Insper - 1 fase 2022.2 - Administração, Economia e Direito.pdf', 'Simulado Nacional Insper 1º fase'), unsafe_allow_html=True)
+    if turma_aluno['Turma'][0] == turma_eng or turma_aluno['Turma'][0] == turma_cien:
+        st.markdown(get_binary_file_downloader_html('PDFEngCien.pdf', 'Simulado Nacional Insper 1º fase'), unsafe_allow_html=True)
+    else:
+        st.markdown(get_binary_file_downloader_html('PDFAdmEcoDir.pdf', 'Simulado Nacional Insper 1º fase'), unsafe_allow_html=True)
     html_br="""
     <br>
     """
