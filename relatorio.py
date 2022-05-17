@@ -2612,7 +2612,7 @@ if login_aluno != '':
     """
     base_resultados_2fase_aluno = base_resultados_2fase.sort_values(by = 'Nota 2º fase', ascending = False).reset_index(drop = True).reset_index()
     base_resultados_2fase_aluno.rename(columns = {'index':'Classificação'}, inplace = True)
-    
+    st.dataframe(base_resultados_2fase_aluno)
     base_resultados_2fase_aluno2 = base_resultados_2fase_aluno[base_resultados_2fase_aluno['Login do aluno(a)'] == login_aluno].reset_index()
     base_resultados_2fase_aluno2['Classificação'][0] = base_resultados_2fase_aluno2['Classificação'][0] + 1
     
