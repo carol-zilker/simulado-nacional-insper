@@ -2891,11 +2891,11 @@ if login_aluno != '':
     cor_texto = []
     for i in range(len(tabela_debate)):
         if (tabela_debate['Comunicação Assertiva - Resultado Individual'][i]+ tabela_debate['Interação com pessoas - Resultado Individual'][i] + tabela_debate['Pensamento crítico - Resultado Individual'][i]) > (tabela_debate['Comunicação Assertiva - Resultado Geral'][i] + tabela_debate['Interação com pessoas - Resultado Geral'][i] + tabela_debate['Pensamento crítico - Resultado Geral'][i]):
-            cor_back.append('#ffb1b1')
-            cor_texto.append('#a80000')
-        else:
             cor_back.append('#a5ffa5')
             cor_texto.append('#008800')
+        else:
+            cor_back.append('#ffb1b1')
+            cor_texto.append('#a80000')
 
     #tabela_detalhes_aluno_debate = tabela_debate.sort_values(by = 'Temas', ascending = True).reset_index()
         
