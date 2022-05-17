@@ -3152,5 +3152,6 @@ if login_aluno != '':
             resultado_final['Nota 1º fase'][i] = 0
     resultado_final['Nota Final'] = 0.00
     for i in range(len(resultado_final['Login do aluno(a)'])):
-        resultado_final['Nota Final'][i] = sqrt(sqrt(float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 2º fase'][i])))
+        #resultado_final['Nota Final'][i] = sqrt(sqrt(float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 2º fase'][i])))
+        resultado_final['Nota Final'][i] = resultado_final['Nota 1º fase'][i]*resultado_final['Nota 2º fase'][i]
     st.dataframe(resultado_final)
