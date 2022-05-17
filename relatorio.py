@@ -2567,7 +2567,8 @@ if login_aluno != '':
     
     ### Resultados gerais do aluno
     base_resultados_2fase = base_resultados_2fase[base_resultados_2fase['Nota 2º fase'] >= 0]
-    numero_candidatos = len(base_resultados_2fase['Nome do aluno(a)'])
+    base_resultados_2faseaux = base_resultados_2fase[base_resultados_2fase['Nota 2º fase'] > 0]
+    numero_candidatos = len(base_resultados_2faseaux['Nome do aluno(a)'])
 
     html_card_header1="""
     <div class="card">
