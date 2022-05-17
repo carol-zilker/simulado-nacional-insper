@@ -2103,7 +2103,7 @@ if login_aluno != '':
             redacao_aluno_media['Nota na questão'][i] = - 50
 
     if len(redacao_tabela3['Status']) != 0:
-        st.write('aaa')
+        
         ### REDAÇÃO
         
         st.markdown(html_header_red, unsafe_allow_html=True)
@@ -2166,7 +2166,7 @@ if login_aluno != '':
                 base_redacao3['Nota na questão'][i] == 0
             else: 
                 base_redacao3['Nota na questão'][i] = 200 + 0.8*base_redacao3['Nota na questão'][i]
-
+        st.write('aaa')
         base_redacao4 = base_redacao3[base_redacao3['Login do aluno(a)'] == login_aluno]
         base_redacao3aux = base_redacao3[base_redacao3['Nota na questão'] > 0]
         base_redacao5 = base_redacao3aux.mean()
