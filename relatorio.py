@@ -3155,3 +3155,173 @@ if login_aluno != '':
         #resultado_final['Nota Final'][i] = sqrt(sqrt(float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 2º fase'][i])))
         resultado_final['Nota Final'][i] = ((resultado_final['Nota 1º fase'][i]**3)*resultado_final['Nota 2º fase'][i])**0.25
     st.dataframe(resultado_final)
+
+    html_header_2fase="""
+    <h2 style="font-size:200%; color: #FF00CE; font-family:Georgia"> 2º FASE<br>
+     <hr style= "  display: block;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: inset;
+      border-width: 1.5px;"></h2>
+    """
+    st.markdown(html_br, unsafe_allow_html=True)
+    st.markdown(html_header_2fase, unsafe_allow_html=True)
+    
+    #st.dataframe(base_resultados_2fase2)
+    resultado_final2 = resultado_final[resultado_final['Nota 2º fase'] >= 0]
+    resultado_finalaux = resultado_final[resultado_final['Nota 2º fase'] > 0]
+    numero_candidatos = len(resultado_finalaux['Nome do aluno(a)'])
+
+    html_card_header1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <h4 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Nota</h4>
+      </div>
+    </div>
+    """
+    html_card_footer1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 0px 0px 10px 10px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Nota máxima: 1000</p>
+      </div>
+    </div>
+    """
+
+    html_card_footer_med1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 10px 10px; background: #c5ffff; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#c5ffff; color:#008181; font-family:Georgia; text-align: center; padding: 0px 0;">Média Geral: """+str(int(round(resultado_finalaux['Nota Final'].mean(),0)))+"""</p>
+      </div>
+    </div>
+    """
+    html_card_header3="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <h4 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Classificação</h4>
+      </div>
+    </div>
+    """
+    html_card_footer3="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 0px 0px 10px 10px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Quantidade de alunos: """+str(numero_candidatos)+"""</p>
+      </div>
+    </div>
+    """
+    resultado_final_aluno = resultado_final.sort_values(by = 'Nota Final', ascending = False).reset_index(drop = True).reset_index()
+    resultado_final_aluno.rename(columns = {'index':'Classificação'}, inplace = True)
+    #st.dataframe(base_resultados_2fase_aluno)
+    resultado_final_aluno2 = resultado_final_aluno[resultado_final_aluno['Login do aluno(a)'] == login_aluno].reset_index()
+    for i in range(len(resultado_final_aluno2['Nota Final'])):
+        if resultado_final_aluno2['Nota Final'][i] == 0:
+            resultado_final_aluno2['Classificação'][0] = numero_candidatos + 1
+        else:
+            resultado_final_aluno2['Classificação'][0] = resultado_final_aluno2['Classificação'][0] + 1
+
+    ### Block 1#########################################################################################
+    with st.container():
+        col1, col2, col3, col4, col5, col6, col7 = st.columns([1,20,1,20,1,20,1])
+        with col1:
+            st.write("")
+        with col2:
+            st.markdown(html_card_header1, unsafe_allow_html=True)
+            fig_c1 = go.Figure(go.Indicator(
+                mode="number+delta",
+                value=round(resultado_final_aluno2['Nota Final'].mean(),1),
+                number={'suffix': "", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
+                delta={'position': "bottom", 'reference': int(round(truncar(resultado_finalaux['Nota Final'].mean(),-1),0)), 'relative': False},
+                domain={'x': [0, 1], 'y': [0, 1]}))
+            fig_c1.update_layout(autosize=False,
+                                 width=350, height=90, margin=dict(l=20, r=20, b=20, t=50),
+                                 paper_bgcolor="#FFF0FC", font={'size': 20})
+            fig_c1.update_traces(delta_decreasing_color="#FF4136",
+                                delta_increasing_color="#3D9970",
+                                delta_valueformat='.0f',
+                                selector=dict(type='indicator'))
+            st.plotly_chart(fig_c1)
+            st.markdown(html_card_footer1, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_card_footer_med1, unsafe_allow_html=True)
+        with col3:
+            st.write("")
+        with col4:
+            st.markdown(html_card_header3, unsafe_allow_html=True)
+            fig_c3 = go.Figure(go.Indicator(
+                mode="number",
+                value=resultado_final_aluno2['Classificação'][0],
+                number={'suffix': "º", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
+                delta={'position': "bottom", 'reference': 1, 'relative': False},
+                domain={'x': [0, 1], 'y': [0, 1]}))
+            fig_c3.update_layout(autosize=False,
+                                 width=350, height=90, margin=dict(l=20, r=20, b=20, t=50),
+                                 paper_bgcolor="#FFF0FC", font={'size': 20})
+            fig_c3.update_traces(delta_decreasing_color="#3D9970",
+                                 delta_increasing_color="#FF4136",
+                                 delta_valueformat='.3f',
+                                 selector=dict(type='indicator'))
+            st.plotly_chart(fig_c3)
+            st.markdown(html_card_footer3, unsafe_allow_html=True)
+        with col5:
+            st.write("")
+        with col6:
+            st.write("")
+        with col7:
+            st.write("")
+    
+    st.markdown(html_br, unsafe_allow_html=True)
+    st.markdown(html_br, unsafe_allow_html=True)
+
+    ponto = str(round(100*(numero_candidatos-(resultado_final_aluno2['Classificação'][0]-1))/numero_candidatos,0)).find('.')
+    texto = str(round(100*(numero_candidatos-(resultado_final_aluno2['Classificação'][0]-1))/numero_candidatos,0))[0:ponto]
+    html_card_header_destaques_gerais="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 60px; width: 495px;
+       height: 150px;">
+        <h5 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 10px 0;">Você foi melhor que """+texto+"""% dos alunos!</h5>
+      </div>
+    </div>
+    """    
+    ### Block 1#########################################################################################
+    with st.container():
+        col1, col2, col3, col4, col5 = st.columns([9,25,2,25,4])
+        with col1:
+            st.write("")
+        with col2:
+            # create the bins
+            counts, bins = np.histogram(resultado_finalaux['Nota 2º fase'], bins=range(0, 1100, 100))
+            bins = 0.5 * (bins[:-1] + bins[1:])
+            fig = px.bar(x=bins, y=counts, labels={'x':'Nota no simulado', 'y':'Número de alunos'})
+            fig.update_layout(title={'text': "Distribuição de notas", 'x': 0.5}, paper_bgcolor="#FFF0FC", 
+                           plot_bgcolor="#FFF0FC", font={'color': "#C81F6D", 'size': 14, 'family': "Georgia"}, height=400,
+                           width=540,
+                           legend=dict(orientation="h",
+                                       yanchor="top",
+                                       y=0.99,
+                                       xanchor="left",
+                                       x=0.01),
+                           margin=dict(l=1, r=1, b=1, t=30))
+            fig.add_vline(x=int(round(resultado_final_aluno2['Nota 2º fase'].mean(),1)), line_width=7, line_dash="dash", line_color="#FF00CE", annotation_text="Você está aqui!", annotation_position="top right")
+            fig.add_vline(x=int(round(truncar(resultado_finalaux['Nota 2º fase'].mean(),-1),0)), line_width=7, line_dash="dash", line_color="#fedc00", annotation_text="Média", annotation_position="top right")
+            fig.update_xaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=6, rangemode="tozero",
+                          showgrid=False, gridwidth=0.5, gridcolor='#f6f6f6')
+            fig.update_yaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=10, rangemode="tozero",
+                          showgrid=True, gridwidth=0.5, gridcolor='#f6f6f6')
+            fig.update_traces(marker_color='#01e1e1')
+            st.plotly_chart(fig)
+        with col3:
+            st.write("")
+        with col4:
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_card_header_destaques_gerais, unsafe_allow_html=True)
+        with col5:
+            st.write("")
