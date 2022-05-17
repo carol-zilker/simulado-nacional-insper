@@ -3135,4 +3135,7 @@ if login_aluno != '':
                 st.markdown(tabela_final2, unsafe_allow_html=True)
             with col3:
                 st.write("")
+
+    st.dataframe(resultados_gerais5)
+    st.dataframe(base_resultados_2fase)
     
