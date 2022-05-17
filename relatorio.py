@@ -2942,7 +2942,7 @@ if login_aluno != '':
     base_resultados_2fase_arguicao2 = base_resultados_2fase_arguicao.drop(columns = ['Tema 1 - Comunicação assertiva','Tema 1 - Interação com pessoas','Tema 1 - Pensamento crítico','Tema 2 - Comunicação assertiva','Tema 2 - Interação com pessoas','Tema 2 - Pensamento crítico','Tema 3 - Comunicação assertiva','Tema 3 - Interação com pessoas','Tema 3 - Pensamento crítico','Tema 4 - Comunicação assertiva','Tema 4 - Interação com pessoas','Tema 4 - Pensamento crítico'])
    
     base_resultados_2fase_arguicao2['Nota 2º fase'] = 125*(base_resultados_2fase_arguicao2['Tema 1 - Aprender a aprender'] + base_resultados_2fase_arguicao2['Tema 2 - Aprender a aprender'])
-    
+    st.dataframe(base_resultados_2fase_arguicao2)
     html_header_2fase="""
     <h2 style="font-size:200%; color: #FF00CE; font-family:Georgia"> ARGUIÇÃO<br>
      <hr style= "  display: block;
@@ -3001,7 +3001,10 @@ if login_aluno != '':
     base_resultados_2fase_aluno_arguicao.rename(columns = {'index':'Classificação'}, inplace = True)
     st.dataframe(base_resultados_2fase_aluno_arguicao)
     base_resultados_2fase_aluno_arguicao2 = base_resultados_2fase_aluno_arguicao[base_resultados_2fase_aluno_arguicao['Login do aluno(a)'] == login_aluno].reset_index()
-    base_resultados_2fase_aluno_arguicao2['Classificação'][0] = base_resultados_2fase_aluno_arguicao2['Classificação'][0] + 1
+    if base_resultados_2fase_aluno_arguicao2['Nota 2ºfase'][0] > 0:
+        base_resultados_2fase_aluno_arguicao2['Classificação'][0] = base_resultados_2fase_aluno_arguicao2['Classificação'][0] + 1
+    else:
+        base_resultados_2fase_aluno_arguicao2['Classificação'][0] = numero_candidatos + 1
     
     #st.dataframe(base_resultados_2fase_aluno)
     ### Block 1#########################################################################################
