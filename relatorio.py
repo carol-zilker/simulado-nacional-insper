@@ -2784,7 +2784,7 @@ if login_aluno != '':
     base_resultados_2fase_aluno_debate = base_resultados_2fase_debate2.sort_values(by = 'Nota 2º fase', ascending = False).reset_index(drop = True).reset_index()
     base_resultados_2fase_aluno_debate.rename(columns = {'index':'Classificação'}, inplace = True)
     base_resultados_2fase_aluno_debate2 = base_resultados_2fase_aluno_debate[base_resultados_2fase_aluno_debate['Login do aluno(a)'] == login_aluno].reset_index()
-    if base_resultados_2fase_aluno_debate2['Nota 2º fase'] == 0:
+    if base_resultados_2fase_aluno_debate2['Nota 2º fase'][0] == 0:
         base_resultados_2fase_aluno_debate2['Classificação'][0] = numero_candidatos + 1
     else:
         base_resultados_2fase_aluno_debate2['Classificação'][0] = base_resultados_2fase_aluno_debate2['Classificação'][0] + 1
