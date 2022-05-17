@@ -2614,7 +2614,7 @@ if login_aluno != '':
     st.dataframe(base_resultados_2fase_aluno)
     base_resultados_2fase_aluno2 = base_resultados_2fase_aluno[base_resultados_2fase_aluno['Login do aluno(a)'] == login_aluno].reset_index()
     for i in range(len(base_resultados_2fase_aluno2['Nota 2º fase'])):
-        if base_resultados_2fase_aluno2['Nota 2º fase']:
+        if base_resultados_2fase_aluno2['Nota 2º fase'] == 0:
             base_resultados_2fase_aluno2['Classificação'][0] = numero_candidatos
         else:
             base_resultados_2fase_aluno2['Classificação'][0] = base_resultados_2fase_aluno2['Classificação'][0] + 1
