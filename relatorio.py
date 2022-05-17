@@ -3136,6 +3136,9 @@ if login_aluno != '':
             with col3:
                 st.write("")
 
-    st.dataframe(resultados_gerais5)
-    st.dataframe(base_resultados_2fase)
-    
+    primeira_fase = resultados_gerais5
+    primeira_fase2 = primeira_fase.drop(columns = ['Número da questão','Tempo na questão','Valor da questão','Unnamed: 3','Acerto'])
+    segunda_fase = base_resultados_2fase
+    segunda_fase2 = segunda_fase.drop(columns = ['Tema 1 - Comunicação assertiva','Tema 2 - Comunicação assertiva','Tema 3 - Comunicação assertiva','Tema 4 - Comunicação assertiva', 'Tema 1 - Interação com pessoas', 'Tema 2 - Interação com pessoas', 'Tema 2 - Interação com pessoas', 'Tema 2 - Interação com pessoas', 'Tema 1 - Pensamento crítico', 'Tema 2 - Pensamento crítico', 'Tema 3 - Pensamento crítico', 'Tema 4 - Pensamento crítico', 'Tema 1 - Aprender a aprender', 'Tema 2 - Aprender a aprender']) 
+    st.dataframe(primeira_fase2)
+    st.dataframe(segunda_fase2)
