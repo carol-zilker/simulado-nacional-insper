@@ -2081,9 +2081,9 @@ if login_aluno != '':
         if base_redacao_disciplina['Nota na questão'][i] > 0:
             base_redacao_disciplina['Nota na questão'][i] = 200 + 0.8*base_redacao_disciplina['Nota na questão'][i]
     #base_redacao_disciplina['Nota na questão'] = 200 + 0.8*base_redacao_disciplina['Nota na questão']
-    st.dataframe(base_redacao_disciplina)
+    #st.dataframe(base_redacao_disciplina)
     base_redacao_disciplina2 = base_redacao_disciplina.sort_values(by = 'Nota na questão', ascending = False).reset_index()
-    st.dataframe(base_redacao_disciplina2)
+    #st.dataframe(base_redacao_disciplina2)
     classificacao_aluno_red = base_redacao_disciplina2[base_redacao_disciplina2['Login do aluno(a)'] == login_aluno].reset_index()
     
     ponto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0)).find('.')
@@ -2176,7 +2176,7 @@ if login_aluno != '':
                 st.write("")
             with col2:
                # create the bins
-                counts, bins = np.histogram(base_redacao3['Nota na questão'], bins=range(0, 1100, 100))
+                counts, bins = np.histogram(base_redacao3aux['Nota na questão'], bins=range(0, 1100, 100))
                 bins = 0.5 * (bins[:-1] + bins[1:])
                 fig = px.bar(x=bins, y=counts, labels={'x':'Nota no simulado', 'y':'Número de alunos'})
                 fig.update_layout(title={'text': "Distribuição de notas", 'x': 0.5}, paper_bgcolor="#FFF0FC", 
