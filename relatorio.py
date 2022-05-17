@@ -3145,7 +3145,7 @@ if login_aluno != '':
 
     resultado_final = pd.merge(segunda_fase2, primeira_fase2, on = 'Login do aluno(a)', how = 'left')
     for i in range(len(resultado_final['Login do aluno(a)'])):
-        if resultado_final['Nota 1º fase'][i] > 0
+        if resultado_final['Nota 1º fase'][i] > 0:
             resultado_final['Nota 1º fase'][i] = resultado_final['Nota 1º fase'][i]
         else:
             resultado_final['Nota 1º fase'][i] = 0
