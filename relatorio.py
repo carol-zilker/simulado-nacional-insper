@@ -135,8 +135,9 @@ st.markdown(html_header, unsafe_allow_html=True)
 
 base_matriz = pd.read_csv('./Jazz Vestibular - 2022.2 - Operação - [RELATÓRIO] Matriz de Questões.csv')
 base_resultados = pd.read_csv('./Jazz Vestibular - 2022.2 - Operação - [RELATÓRIO] Base de Dados.csv')
-base_resultados_2fase = pd.read_csv('./Jazz Vestibular - 2022.2 - Operacao - [RELATORIO] Base de Dados 2 fase copy.csv')
-st.dataframe(base_resultados_2fase)
+teste = pd.read_csv('./Simulado Nacional Insper - Cópia de Base 2º fase.csv')
+#base_resultados_2fase = pd.read_csv('./Jazz Vestibular - 2022.2 - Operacao - [RELATORIO] Base de Dados 2 fase copy.csv')
+#st.dataframe(base_resultados_2fase)
 #base_resultados_2fase = pd.read_csv('./Jazz Vestibular - 2022.2 - Operacao - [RELATORIO] Base de Dados 2 fase copy.csv')
 
 ### Turmas
