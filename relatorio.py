@@ -3140,10 +3140,9 @@ if login_aluno != '':
     primeira_fase2 = primeira_fase.drop(columns = ['Número da questão','Tempo na questão','Valor da questão','Unnamed: 3','Acerto'])
     segunda_fase = base_resultados_2fase
     segunda_fase2 = segunda_fase.drop(columns = ['Tema 1 - Comunicação assertiva','Tema 2 - Comunicação assertiva','Tema 3 - Comunicação assertiva','Tema 4 - Comunicação assertiva', 'Tema 1 - Interação com pessoas', 'Tema 2 - Interação com pessoas', 'Tema 3 - Interação com pessoas', 'Tema 4 - Interação com pessoas', 'Tema 1 - Pensamento crítico', 'Tema 2 - Pensamento crítico', 'Tema 3 - Pensamento crítico', 'Tema 4 - Pensamento crítico', 'Tema 1 - Aprender a aprender', 'Tema 2 - Aprender a aprender']) 
-    primeira_fase2.rename(columns = {'Nota na questão':'Nota'}, inplace = True)
-    segunda_fase2.rename(columns = {'Nota 2º fase':'Nota'}, inplace = True)
+    primeira_fase2.rename(columns = {'Nota na questão':'Nota 1º fase'}, inplace = True)
     st.dataframe(primeira_fase2)
     st.dataframe(segunda_fase2)
 
-    resultado_final = pd.merge(segunda_fase, primeira_fase, on = 'Nota', how = 'left')
+    resultado_final = pd.merge(segunda_fase, primeira_fase, on = 'Login do aluno(a)', how = 'left')
     st.dataframe(resultado_final)
