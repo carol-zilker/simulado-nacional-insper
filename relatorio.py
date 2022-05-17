@@ -2087,7 +2087,8 @@ if login_aluno != '':
     
     ponto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0)).find('.')
     texto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0))[0:ponto]
-
+    if classificacao_aluno_red['level_0'][0] > numero_candidatos:
+        classificacao_aluno_red['level_0'][0] = '-'
     html_card_header_destaques_red="""
     <div class="card">
         <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 60px; width: 495px;
