@@ -2077,6 +2077,7 @@ if login_aluno != '':
     base_redacao_disciplina = base_redacao2.groupby('Login do aluno(a)').sum().reset_index()
     base_redacao_disciplina['Nota na questão'] = 200 + 0.8*base_redacao_disciplina['Nota na questão']
     base_redacao_disciplina2 = base_redacao_disciplina.sort_values(by = 'Nota na questão', ascending = False).reset_index()
+    st.dataframe(base_redacao_disciplina2)
     classificacao_aluno_red = base_redacao_disciplina2[base_redacao_disciplina2['Login do aluno(a)'] == login_aluno].reset_index()
     
     ponto = str(round(100*(numero_candidatos-(classificacao_aluno_red['level_0'][0]))/numero_candidatos,0)).find('.')
