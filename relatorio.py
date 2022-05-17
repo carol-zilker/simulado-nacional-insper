@@ -2164,7 +2164,7 @@ if login_aluno != '':
             if base_redacao3['Nota na questão'][i] == 0:
                 base_redacao3['Nota na questão'][i] == 0
             else: 
-                base_redacao3['Nota na questão'] = 200 + 0.8*base_redacao3['Nota na questão'] 
+                base_redacao3['Nota na questão'][i] = 200 + 0.8*base_redacao3['Nota na questão'][i]
 
         base_redacao4 = base_redacao3[base_redacao3['Login do aluno(a)'] == login_aluno]
         base_redacao3aux = base_redacao3[base_redacao3['Nota na questão'] > 0]
