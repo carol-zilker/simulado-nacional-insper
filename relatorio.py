@@ -2101,8 +2101,9 @@ if login_aluno != '':
     for i in range(len(redacao_aluno_media['Nota na questão'])):
         if redacao_aluno_media['Nota na questão'][i] == 0:
             redacao_aluno_media['Nota na questão'][i] = - 50
-    if len(redacao_tabela3['Status']) != 0:
 
+    if len(redacao_tabela3['Status']) != 0:
+        st.write('aaa')
         ### REDAÇÃO
         
         st.markdown(html_header_red, unsafe_allow_html=True)
