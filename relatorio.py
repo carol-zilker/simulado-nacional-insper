@@ -2589,7 +2589,7 @@ if login_aluno != '':
     <div class="card">
       <div class="card-body" style="border-radius: 10px 10px 10px 10px; background: #c5ffff; padding-top: 12px; width: 350px;
        height: 50px;">
-        <p class="card-title" style="background-color:#c5ffff; color:#008181; font-family:Georgia; text-align: center; padding: 0px 0;">Média Geral: """+str(int(round(base_resultados_2fase['Nota 2º fase'].mean(),0)))+"""</p>
+        <p class="card-title" style="background-color:#c5ffff; color:#008181; font-family:Georgia; text-align: center; padding: 0px 0;">Média Geral: """+str(int(round(base_resultados_2faseaux['Nota 2º fase'].mean(),0)))+"""</p>
       </div>
     </div>
     """
