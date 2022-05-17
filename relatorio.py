@@ -3123,7 +3123,7 @@ if login_aluno != '':
     cor_back = []
     cor_texto = []
     for i in range(len(tabela_arguicao)):
-        if (tabela_debate['Aprender a aprender - Resultado Individual'][i] > tabela_debate['Aprender a aprender - Resultado Geral'][i]):
+        if (tabela_arguicao['Aprender a aprender - Resultado Individual'][i] > tabela_arguicao['Aprender a aprender - Resultado Geral'][i]):
             cor_back.append('#a5ffa5')
             cor_texto.append('#008800')
         else:
