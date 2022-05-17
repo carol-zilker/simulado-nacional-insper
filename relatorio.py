@@ -2075,10 +2075,12 @@ if login_aluno != '':
     """
 
     base_redacao_disciplina = base_redacao2.groupby('Login do aluno(a)').sum().reset_index()
+    
+    for i in range(len(base_redacao_disciplina['Login do aluno(a)'])):
+        if base_redacao_disciplina['Nota na questão'][i] > 0:
+            base_redacao_disciplina['Nota na questão'][i] = 200 + 0.8*base_redacao_disciplina['Nota na questão'][i]
+    #base_redacao_disciplina['Nota na questão'] = 200 + 0.8*base_redacao_disciplina['Nota na questão']
     st.dataframe(base_redacao_disciplina)
-    #for i in range(len(base_redacao_disciplina['Login do aluno(a)'])):
-    #    if base_redacao_disciplina['Nota na questão']
-    base_redacao_disciplina['Nota na questão'] = 200 + 0.8*base_redacao_disciplina['Nota na questão']
     base_redacao_disciplina2 = base_redacao_disciplina.sort_values(by = 'Nota na questão', ascending = False).reset_index()
     st.dataframe(base_redacao_disciplina2)
     classificacao_aluno_red = base_redacao_disciplina2[base_redacao_disciplina2['Login do aluno(a)'] == login_aluno].reset_index()
