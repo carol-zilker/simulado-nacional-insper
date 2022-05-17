@@ -34,6 +34,67 @@ def get_binary_file_downloader_html(bin_file, file_label='File'):
     href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Clique aqui para baixar o {file_label}</a>'
     return href
 
+def tabela_questoes_debate(dataframe,coluna1,coluna2,coluna3,coluna4,coluna5,coluna6,coluna7,cor_texto,cor_back):
+    html_table_questoes_debate=""" 
+    <table bordercolor=#FFF0FC>
+      <tr style="background-color:#ffd8f8; height: 90px; color:#C81F6D; font-family:Georgia; font-size: 17px; text-align: center">
+        <th style="width:100px; bordercolor=#FFF0FC">Temas</th>
+        <th style="width:200px; bordercolor=#FFF0FC">Comunicação Assertiva - Resultado Individual</th>
+        <th style="width:350px; bordercolor=#FFF0FC">Comunicação Assertiva - Resultado Geral</th>
+        <th style="width:100px; bordercolor=#FFF0FC">Interação com Pessoas - Resultado Individual</th>
+        <th style="width:100px; bordercolor=#FFF0FC">Interação com Pessoas - Resultado Geral</th>
+        <th style="width:100px; bordercolor=#FFF0FC">Pensamento Crítico - Resultado Individual</th>
+        <th style="width:100px; bordercolor=#FFF0FC">Pensamento Crítico - Resultado Geral</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[0]+"""; height: 42px; color:"""+cor_texto[0]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][0])+"""</th>
+        <th>"""+str(dataframe[coluna2][0])+"""</th>
+        <th>"""+str(dataframe[coluna3][0])+"""</th>
+        <th>"""+str(dataframe[coluna4][0])+"""</th>
+        <th>"""+str(dataframe[coluna5][0])+"""</th>
+        <th>"""+str(dataframe[coluna6][0])+"""</th>
+        <th>"""+str(dataframe[coluna7][0])+"""</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[1]+"""; height: 42px; color:"""+cor_texto[1]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][1])+"""</th>
+        <th>"""+str(dataframe[coluna2][1])+"""</th>
+        <th>"""+str(dataframe[coluna3][1])+"""</th>
+        <th>"""+str(dataframe[coluna4][1])+"""</th>
+        <th>"""+str(dataframe[coluna5][1])+"""</th>
+        <th>"""+str(dataframe[coluna6][1])+"""</th>
+        <th>"""+str(dataframe[coluna7][1])+"""</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[2]+"""; height: 42px; color:"""+cor_texto[2]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][2])+"""</th>
+        <th>"""+str(dataframe[coluna2][2])+"""</th>
+        <th>"""+str(dataframe[coluna3][2])+"""</th>
+        <th>"""+str(dataframe[coluna4][2])+"""</th>
+        <th>"""+str(dataframe[coluna5][2])+"""</th>
+        <th>"""+str(dataframe[coluna6][2])+"""</th>
+        <th>"""+str(dataframe[coluna7][2])+"""</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[3]+"""; height: 42px; color:"""+cor_texto[3]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][3])+"""</th>
+        <th>"""+str(dataframe[coluna2][3])+"""</th>
+        <th>"""+str(dataframe[coluna3][3])+"""</th>
+        <th>"""+str(dataframe[coluna4][3])+"""</th>
+        <th>"""+str(dataframe[coluna5][3])+"""</th>
+        <th>"""+str(dataframe[coluna6][3])+"""</th>
+        <th>"""+str(dataframe[coluna7][3])+"""</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[4]+"""; height: 42px; color:"""+cor_texto[4]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][4])+"""</th>
+        <th>"""+str(dataframe[coluna2][4])+"""</th>
+        <th>"""+str(dataframe[coluna3][4])+"""</th>
+        <th>"""+str(dataframe[coluna4][4])+"""</th>
+        <th>"""+str(dataframe[coluna5][4])+"""</th>
+        <th>"""+str(dataframe[coluna6][4])+"""</th>
+        <th>"""+str(dataframe[coluna7][4])+"""</th>
+      </tr>
+       </table>
+    """
+    return html_table_questoes_debate
+
 def tabela_questoes(dataframe,coluna1,coluna2,coluna3,coluna4,coluna5,coluna6,coluna7,coluna8,coluna9,cor_texto,cor_back):
     html_table_questoes=""" 
     <table bordercolor=#FFF0FC>

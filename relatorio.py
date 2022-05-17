@@ -18,6 +18,7 @@
 
 ### Importação de bibliotecas
 
+from pickle import FALSE
 from tkinter import E
 import pandas as pd
 import streamlit as st
@@ -162,7 +163,7 @@ for i in range(len(base['Nome da avaliação'])):
         base['Acerto'][i] = 1
         base['Nota na questão'][i] = base['Acerto'][i]*base['Valor da questão'][i]
     if base['Número da questão'][i] == 73 and base['Resposta do aluno(a)'][i] != 'x':
-        base['Acerto'][i] = float(base['Resposta do aluno(a)'][i])/(base['Valor da questão'][i])
+        base['Acerto'][i] = 0.2+0.8*float(base['Resposta do aluno(a)'][i])/(base['Valor da questão'][i])
         base['Nota na questão'][i] = base['Acerto'][i]*base['Valor da questão'][i]
 
 resultados_gerais = base.groupby(['Nome da avaliação','Turma','Nome do aluno(a)','Login do aluno(a)']).sum().reset_index()
@@ -2089,8 +2090,8 @@ if login_aluno != '':
 
     if len(redacao_tabela3['Status']) != 0:
 
-        ### MATEMÁTICA
-
+        ### REDAÇÃO
+        
         st.markdown(html_header_red, unsafe_allow_html=True)
         
         ### Block 1#########################################################################################
@@ -2449,25 +2450,25 @@ if login_aluno != '':
       border-style: inset;
       border-width: 1.5px;"></h2>
     """
-
+    st.markdown(html_br, unsafe_allow_html=True)
+    st.markdown(html_header_2fase, unsafe_allow_html=True)
     
-    base_resultados_2fase2 = base_resultados_2fase.sum()
     #st.dataframe(base_resultados_2fase2)
     for i in range(len(base_resultados_2fase['Login do aluno(a)'])):
         base_resultados_2fase['Tema 1 - Comunicação assertiva'][i] = float(str(base_resultados_2fase['Tema 1 - Comunicação assertiva'][i]).replace(',','.'))
         base_resultados_2fase['Tema 1 - Interação com pessoas'][i] = float(str(base_resultados_2fase['Tema 1 - Interação com pessoas'][i]).replace(',','.'))
         base_resultados_2fase['Tema 1 - Pensamento crítico'][i] = float(str(base_resultados_2fase['Tema 1 - Pensamento crítico'][i]).replace(',','.'))
         base_resultados_2fase['Tema 1 - Aprender a aprender'][i] = float(str(base_resultados_2fase['Tema 1 - Aprender a aprender'][i]).replace(',','.'))
-        base_resultados_2fase['Tema 2 - Comunicação assertiva'][i] = float(str(base_resultados_2fase['Tema 1 - Comunicação assertiva'][i]).replace(',','.'))
-        base_resultados_2fase['Tema 2 - Interação com pessoas'][i] = float(str(base_resultados_2fase['Tema 1 - Interação com pessoas'][i]).replace(',','.'))
-        base_resultados_2fase['Tema 2 - Pensamento crítico'][i] = float(str(base_resultados_2fase['Tema 1 - Pensamento crítico'][i]).replace(',','.'))
-        base_resultados_2fase['Tema 2 - Aprender a aprender'][i] = float(str(base_resultados_2fase['Tema 1 - Aprender a aprender'][i]).replace(',','.'))
-        base_resultados_2fase['Tema 3 - Comunicação assertiva'][i] = float(str(base_resultados_2fase['Tema 1 - Comunicação assertiva'][i]).replace(',','.'))
-        base_resultados_2fase['Tema 3 - Interação com pessoas'][i] = float(str(base_resultados_2fase['Tema 1 - Interação com pessoas'][i]).replace(',','.'))
-        base_resultados_2fase['Tema 3 - Pensamento crítico'][i] = float(str(base_resultados_2fase['Tema 1 - Pensamento crítico'][i]).replace(',','.'))
-        base_resultados_2fase['Tema 4 - Comunicação assertiva'][i] = float(str(base_resultados_2fase['Tema 1 - Comunicação assertiva'][i]).replace(',','.'))
-        base_resultados_2fase['Tema 4 - Interação com pessoas'][i] = float(str(base_resultados_2fase['Tema 1 - Interação com pessoas'][i]).replace(',','.'))
-        base_resultados_2fase['Tema 4 - Pensamento crítico'][i] = float(str(base_resultados_2fase['Tema 1 - Pensamento crítico'][i]).replace(',','.'))
+        base_resultados_2fase['Tema 2 - Comunicação assertiva'][i] = float(str(base_resultados_2fase['Tema 2 - Comunicação assertiva'][i]).replace(',','.'))
+        base_resultados_2fase['Tema 2 - Interação com pessoas'][i] = float(str(base_resultados_2fase['Tema 2 - Interação com pessoas'][i]).replace(',','.'))
+        base_resultados_2fase['Tema 2 - Pensamento crítico'][i] = float(str(base_resultados_2fase['Tema 2 - Pensamento crítico'][i]).replace(',','.'))
+        base_resultados_2fase['Tema 2 - Aprender a aprender'][i] = float(str(base_resultados_2fase['Tema 2 - Aprender a aprender'][i]).replace(',','.'))
+        base_resultados_2fase['Tema 3 - Comunicação assertiva'][i] = float(str(base_resultados_2fase['Tema 3 - Comunicação assertiva'][i]).replace(',','.'))
+        base_resultados_2fase['Tema 3 - Interação com pessoas'][i] = float(str(base_resultados_2fase['Tema 3 - Interação com pessoas'][i]).replace(',','.'))
+        base_resultados_2fase['Tema 3 - Pensamento crítico'][i] = float(str(base_resultados_2fase['Tema 3 - Pensamento crítico'][i]).replace(',','.'))
+        base_resultados_2fase['Tema 4 - Comunicação assertiva'][i] = float(str(base_resultados_2fase['Tema 4 - Comunicação assertiva'][i]).replace(',','.'))
+        base_resultados_2fase['Tema 4 - Interação com pessoas'][i] = float(str(base_resultados_2fase['Tema 4 - Interação com pessoas'][i]).replace(',','.'))
+        base_resultados_2fase['Tema 4 - Pensamento crítico'][i] = float(str(base_resultados_2fase['Tema 4 - Pensamento crítico'][i]).replace(',','.'))
         if base_resultados_2fase['Tema 1 - Comunicação assertiva'][i] > 0:
             base_resultados_2fase['Tema 1 - Comunicação assertiva'][i] = base_resultados_2fase['Tema 1 - Comunicação assertiva'][i]
         else:
@@ -2538,12 +2539,540 @@ if login_aluno != '':
         else:
             base_resultados_2fase['Tema 4 - Pensamento crítico'][i] = 0
 
-        base_resultados_2fase['Nota 2º fase'] = 0.00
-        base_resultados_2fase['Nota 2º fase'] = base_resultados_2fase['Tema 1 - Comunicação assertiva'] + base_resultados_2fase['Tema 1 - Interação com pessoas'] + base_resultados_2fase['Tema 1 - Pensamento crítico'] + base_resultados_2fase['Tema 1 - Aprender a aprender'] + base_resultados_2fase['Tema 2 - Comunicação assertiva'] +  base_resultados_2fase['Tema 2 - Interação com pessoas'] + base_resultados_2fase['Tema 2 - Pensamento crítico'] + base_resultados_2fase['Tema 2 - Aprender a aprender'] + base_resultados_2fase['Tema 3 - Comunicação assertiva'] + base_resultados_2fase['Tema 3 - Interação com pessoas'] + base_resultados_2fase['Tema 3 - Pensamento crítico'] + base_resultados_2fase['Tema 4 - Comunicação assertiva'] + base_resultados_2fase['Tema 4 - Interação com pessoas'] + base_resultados_2fase['Tema 4 - Pensamento crítico']
+    base_resultados_2fase['Nota 2º fase'] = 0.00
+    base_resultados_2fase['Nota 2º fase'] = (750*base_resultados_2fase['Tema 1 - Comunicação assertiva']/12 + 750*base_resultados_2fase['Tema 1 - Interação com pessoas']/12 + 750*base_resultados_2fase['Tema 1 - Pensamento crítico']/12 + 250*base_resultados_2fase['Tema 1 - Aprender a aprender']/2 + 750*base_resultados_2fase['Tema 2 - Comunicação assertiva']/12 +  750*base_resultados_2fase['Tema 2 - Interação com pessoas']/12 + 750*base_resultados_2fase['Tema 2 - Pensamento crítico']/12 + 250*base_resultados_2fase['Tema 2 - Aprender a aprender']/2 + 750*base_resultados_2fase['Tema 3 - Comunicação assertiva']/12 + 750*base_resultados_2fase['Tema 3 - Interação com pessoas']/12 + 750*base_resultados_2fase['Tema 3 - Pensamento crítico']/12 + 750*base_resultados_2fase['Tema 4 - Comunicação assertiva']/12 + 750*base_resultados_2fase['Tema 4 - Interação com pessoas']/12 + 750*base_resultados_2fase['Tema 4 - Pensamento crítico']/12)/4
 
     #st.dataframe(base_resultados_2fase)
     #base_resultados_2fase2 = base_resultados_2fase[base_resultados_2fase['Tema 1 - Comunicação assertiva'] > 0]
-    st.dataframe(base_resultados_2fase)
+    
+    ### Resultados gerais do aluno
+    base_resultados_2fase = base_resultados_2fase[base_resultados_2fase['Nota 2º fase'] > 0]
+    numero_candidatos = len(base_resultados_2fase['Nome do aluno(a)'])
+
+    html_card_header1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <h4 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Nota</h4>
+      </div>
+    </div>
+    """
+    html_card_footer1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 0px 0px 10px 10px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Nota máxima: 1000</p>
+      </div>
+    </div>
+    """
+
+    html_card_footer_med1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 10px 10px; background: #c5ffff; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#c5ffff; color:#008181; font-family:Georgia; text-align: center; padding: 0px 0;">Média Geral: """+str(int(round(base_resultados_2fase['Nota 2º fase'].mean(),0)))+"""</p>
+      </div>
+    </div>
+    """
+    html_card_header3="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <h4 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Classificação</h4>
+      </div>
+    </div>
+    """
+    html_card_footer3="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 0px 0px 10px 10px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Quantidade de alunos: """+str(numero_candidatos)+"""</p>
+      </div>
+    </div>
+    """
+    base_resultados_2fase_aluno = base_resultados_2fase.sort_values(by = 'Nota 2º fase', ascending = False).reset_index(drop = True).reset_index()
+    base_resultados_2fase_aluno.rename(columns = {'index':'Classificação'}, inplace = True)
+    
+    base_resultados_2fase_aluno2 = base_resultados_2fase_aluno[base_resultados_2fase_aluno['Login do aluno(a)'] == login_aluno].reset_index()
+    base_resultados_2fase_aluno2['Classificação'][0] = base_resultados_2fase_aluno2['Classificação'][0] + 1
+    
+    ### Block 1#########################################################################################
+    with st.container():
+        col1, col2, col3, col4, col5, col6, col7 = st.columns([1,20,1,20,1,20,1])
+        with col1:
+            st.write("")
+        with col2:
+            st.markdown(html_card_header1, unsafe_allow_html=True)
+            fig_c1 = go.Figure(go.Indicator(
+                mode="number+delta",
+                value=round(base_resultados_2fase_aluno2['Nota 2º fase'].mean(),1),
+                number={'suffix': "", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
+                delta={'position': "bottom", 'reference': int(round(truncar(base_resultados_2fase['Nota 2º fase'].mean(),-1),0)), 'relative': False},
+                domain={'x': [0, 1], 'y': [0, 1]}))
+            fig_c1.update_layout(autosize=False,
+                                 width=350, height=90, margin=dict(l=20, r=20, b=20, t=50),
+                                 paper_bgcolor="#FFF0FC", font={'size': 20})
+            fig_c1.update_traces(delta_decreasing_color="#FF4136",
+                                delta_increasing_color="#3D9970",
+                                delta_valueformat='.0f',
+                                selector=dict(type='indicator'))
+            st.plotly_chart(fig_c1)
+            st.markdown(html_card_footer1, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_card_footer_med1, unsafe_allow_html=True)
+        with col3:
+            st.write("")
+        with col4:
+            st.markdown(html_card_header3, unsafe_allow_html=True)
+            fig_c3 = go.Figure(go.Indicator(
+                mode="number",
+                value=base_resultados_2fase_aluno2['Classificação'][0],
+                number={'suffix': "º", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
+                delta={'position': "bottom", 'reference': 1, 'relative': False},
+                domain={'x': [0, 1], 'y': [0, 1]}))
+            fig_c3.update_layout(autosize=False,
+                                 width=350, height=90, margin=dict(l=20, r=20, b=20, t=50),
+                                 paper_bgcolor="#FFF0FC", font={'size': 20})
+            fig_c3.update_traces(delta_decreasing_color="#3D9970",
+                                 delta_increasing_color="#FF4136",
+                                 delta_valueformat='.3f',
+                                 selector=dict(type='indicator'))
+            st.plotly_chart(fig_c3)
+            st.markdown(html_card_footer3, unsafe_allow_html=True)
+        with col5:
+            st.write("")
+        with col6:
+            st.write("")
+        with col7:
+            st.write("")
+    
+    st.markdown(html_br, unsafe_allow_html=True)
+    st.markdown(html_br, unsafe_allow_html=True)
+
+    ponto = str(round(100*(numero_candidatos-(base_resultados_2fase_aluno2['Classificação'][0]-1))/numero_candidatos,0)).find('.')
+    texto = str(round(100*(numero_candidatos-(base_resultados_2fase_aluno2['Classificação'][0]-1))/numero_candidatos,0))[0:ponto]
+    html_card_header_destaques_gerais="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 60px; width: 495px;
+       height: 150px;">
+        <h5 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 10px 0;">Você foi melhor que """+texto+"""% dos alunos!</h5>
+      </div>
+    </div>
+    """    
+    ### Block 1#########################################################################################
+    with st.container():
+        col1, col2, col3, col4, col5 = st.columns([9,25,2,25,4])
+        with col1:
+            st.write("")
+        with col2:
+            # create the bins
+            counts, bins = np.histogram(base_resultados_2fase['Nota 2º fase'], bins=range(0, 1100, 100))
+            bins = 0.5 * (bins[:-1] + bins[1:])
+            fig = px.bar(x=bins, y=counts, labels={'x':'Nota no simulado', 'y':'Número de alunos'})
+            fig.update_layout(title={'text': "Distribuição de notas", 'x': 0.5}, paper_bgcolor="#FFF0FC", 
+                           plot_bgcolor="#FFF0FC", font={'color': "#C81F6D", 'size': 14, 'family': "Georgia"}, height=400,
+                           width=540,
+                           legend=dict(orientation="h",
+                                       yanchor="top",
+                                       y=0.99,
+                                       xanchor="left",
+                                       x=0.01),
+                           margin=dict(l=1, r=1, b=1, t=30))
+            fig.add_vline(x=int(round(base_resultados_2fase_aluno2['Nota 2º fase'].mean(),1)), line_width=7, line_dash="dash", line_color="#FF00CE", annotation_text="Você está aqui!", annotation_position="top right")
+            fig.add_vline(x=int(round(truncar(base_resultados_2fase['Nota 2º fase'].mean(),-1),0)), line_width=7, line_dash="dash", line_color="#fedc00", annotation_text="Média", annotation_position="top right")
+            fig.update_xaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=6, rangemode="tozero",
+                          showgrid=False, gridwidth=0.5, gridcolor='#f6f6f6')
+            fig.update_yaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=10, rangemode="tozero",
+                          showgrid=True, gridwidth=0.5, gridcolor='#f6f6f6')
+            fig.update_traces(marker_color='#01e1e1')
+            st.plotly_chart(fig)
+        with col3:
+            st.write("")
+        with col4:
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_card_header_destaques_gerais, unsafe_allow_html=True)
+        with col5:
+            st.write("")
+
+    base_resultados_2fase_debate = pd.DataFrame()
+    base_resultados_2fase_debate = base_resultados_2fase
+    
+    base_resultados_2fase_debate2 = base_resultados_2fase_debate.drop(columns = ['Tema 1 - Aprender a aprender','Tema 2 - Aprender a aprender'])
+   
+    base_resultados_2fase_debate2['Nota 2º fase'] = 1000*(750*base_resultados_2fase_debate2['Tema 1 - Comunicação assertiva']/12 + 750*base_resultados_2fase_debate2['Tema 1 - Interação com pessoas']/12 + 750*base_resultados_2fase_debate2['Tema 1 - Pensamento crítico']/12 + 750*base_resultados_2fase_debate2['Tema 2 - Comunicação assertiva']/12 +  750*base_resultados_2fase_debate2['Tema 2 - Interação com pessoas']/12 + 750*base_resultados_2fase_debate2['Tema 2 - Pensamento crítico']/12 + 750*base_resultados_2fase_debate2['Tema 3 - Comunicação assertiva']/12 + 750*base_resultados_2fase_debate2['Tema 3 - Interação com pessoas']/12 + 750*base_resultados_2fase_debate2['Tema 3 - Pensamento crítico']/12 + 750*base_resultados_2fase_debate2['Tema 4 - Comunicação assertiva']/12 + 750*base_resultados_2fase_debate2['Tema 4 - Interação com pessoas']/12 + 750*base_resultados_2fase_debate2['Tema 4 - Pensamento crítico']/12)/3000
+    
+    html_header_2fase="""
+    <h2 style="font-size:200%; color: #FF00CE; font-family:Georgia"> DEBATE<br>
+     <hr style= "  display: block;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: inset;
+      border-width: 1.5px;"></h2>
+    """
+    st.markdown(html_br, unsafe_allow_html=True)
+    st.markdown(html_header_2fase, unsafe_allow_html=True)
+
+    html_card_header1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <h4 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Nota</h4>
+      </div>
+    </div>
+    """
+    html_card_footer1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 0px 0px 10px 10px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Nota máxima: 1000</p>
+      </div>
+    </div>
+    """
+
+    html_card_footer_med1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 10px 10px; background: #c5ffff; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#c5ffff; color:#008181; font-family:Georgia; text-align: center; padding: 0px 0;">Média Geral: """+str(int(round(base_resultados_2fase_debate2['Nota 2º fase'].mean(),0)))+"""</p>
+      </div>
+    </div>
+    """
+    html_card_header3="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <h4 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Classificação</h4>
+      </div>
+    </div>
+    """
+    html_card_footer3="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 0px 0px 10px 10px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Quantidade de alunos: """+str(numero_candidatos)+"""</p>
+      </div>
+    </div>
+    """
+    base_resultados_2fase_aluno_debate = base_resultados_2fase_debate2.sort_values(by = 'Nota 2º fase', ascending = False).reset_index(drop = True).reset_index()
+    base_resultados_2fase_aluno_debate.rename(columns = {'index':'Classificação'}, inplace = True)
+    base_resultados_2fase_aluno_debate2 = base_resultados_2fase_aluno_debate[base_resultados_2fase_aluno_debate['Login do aluno(a)'] == login_aluno].reset_index()
+    base_resultados_2fase_aluno_debate2['Classificação'][0] = base_resultados_2fase_aluno_debate2['Classificação'][0] + 1
+    
+    #st.dataframe(base_resultados_2fase_aluno)
+    ### Block 1#########################################################################################
+    with st.container():
+        col1, col2, col3, col4, col5, col6, col7 = st.columns([1,20,1,20,1,20,1])
+        with col1:
+            st.write("")
+        with col2:
+            st.markdown(html_card_header1, unsafe_allow_html=True)
+            fig_c1 = go.Figure(go.Indicator(
+                mode="number+delta",
+                value=round(base_resultados_2fase_aluno_debate2['Nota 2º fase'].mean(),1),
+                number={'suffix': "", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
+                delta={'position': "bottom", 'reference': int(round(truncar(base_resultados_2fase_debate['Nota 2º fase'].mean(),-1),0)), 'relative': False},
+                domain={'x': [0, 1], 'y': [0, 1]}))
+            fig_c1.update_layout(autosize=False,
+                                 width=350, height=90, margin=dict(l=20, r=20, b=20, t=50),
+                                 paper_bgcolor="#FFF0FC", font={'size': 20})
+            fig_c1.update_traces(delta_decreasing_color="#FF4136",
+                                delta_increasing_color="#3D9970",
+                                delta_valueformat='.0f',
+                                selector=dict(type='indicator'))
+            st.plotly_chart(fig_c1)
+            st.markdown(html_card_footer1, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_card_footer_med1, unsafe_allow_html=True)
+        with col3:
+            st.write("")
+        with col4:
+            st.markdown(html_card_header3, unsafe_allow_html=True)
+            fig_c3 = go.Figure(go.Indicator(
+                mode="number",
+                value=base_resultados_2fase_aluno_debate2['Classificação'][0],
+                number={'suffix': "º", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
+                delta={'position': "bottom", 'reference': 1, 'relative': False},
+                domain={'x': [0, 1], 'y': [0, 1]}))
+            fig_c3.update_layout(autosize=False,
+                                 width=350, height=90, margin=dict(l=20, r=20, b=20, t=50),
+                                 paper_bgcolor="#FFF0FC", font={'size': 20})
+            fig_c3.update_traces(delta_decreasing_color="#3D9970",
+                                 delta_increasing_color="#FF4136",
+                                 delta_valueformat='.3f',
+                                 selector=dict(type='indicator'))
+            st.plotly_chart(fig_c3)
+            st.markdown(html_card_footer3, unsafe_allow_html=True)
+        with col5:
+            st.write("")
+        with col6:
+            st.write("")
+        with col7:
+            st.write("")
+    
+    st.markdown(html_br, unsafe_allow_html=True)
+    st.markdown(html_br, unsafe_allow_html=True)
+
+    ponto = str(round(100*(numero_candidatos-(base_resultados_2fase_aluno_debate2['Classificação'][0]-1))/numero_candidatos,0)).find('.')
+    texto = str(round(100*(numero_candidatos-(base_resultados_2fase_aluno_debate2['Classificação'][0]-1))/numero_candidatos,0))[0:ponto]
+    html_card_header_destaques_gerais="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 60px; width: 495px;
+       height: 150px;">
+        <h5 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 10px 0;">Você foi melhor que """+texto+"""% dos alunos!</h5>
+      </div>
+    </div>
+    """    
+    ### Block 1#########################################################################################
+    with st.container():
+        col1, col2, col3, col4, col5 = st.columns([9,25,2,25,4])
+        with col1:
+            st.write("")
+        with col2:
+            # create the bins
+            counts, bins = np.histogram(base_resultados_2fase_debate2['Nota 2º fase'], bins=range(0, 1100, 100))
+            bins = 0.5 * (bins[:-1] + bins[1:])
+            fig = px.bar(x=bins, y=counts, labels={'x':'Nota no simulado', 'y':'Número de alunos'})
+            fig.update_layout(title={'text': "Distribuição de notas", 'x': 0.5}, paper_bgcolor="#FFF0FC", 
+                           plot_bgcolor="#FFF0FC", font={'color': "#C81F6D", 'size': 14, 'family': "Georgia"}, height=400,
+                           width=540,
+                           legend=dict(orientation="h",
+                                       yanchor="top",
+                                       y=0.99,
+                                       xanchor="left",
+                                       x=0.01),
+                           margin=dict(l=1, r=1, b=1, t=30))
+            fig.add_vline(x=int(round(base_resultados_2fase_aluno_debate2['Nota 2º fase'].mean(),1)), line_width=7, line_dash="dash", line_color="#FF00CE", annotation_text="Você está aqui!", annotation_position="top right")
+            fig.add_vline(x=int(round(truncar(base_resultados_2fase_debate2['Nota 2º fase'].mean(),-1),0)), line_width=7, line_dash="dash", line_color="#fedc00", annotation_text="Média", annotation_position="top right")
+            fig.update_xaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=6, rangemode="tozero",
+                          showgrid=False, gridwidth=0.5, gridcolor='#f6f6f6')
+            fig.update_yaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=10, rangemode="tozero",
+                          showgrid=True, gridwidth=0.5, gridcolor='#f6f6f6')
+            fig.update_traces(marker_color='#01e1e1')
+            st.plotly_chart(fig)
+        with col3:
+            st.write("")
+        with col4:
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_card_header_destaques_gerais, unsafe_allow_html=True)
+        with col5:
+            st.write("")
+
+    base_resultados_2fase_debate3 = base_resultados_2fase_debate2[base_resultados_2fase_debate2['Login do aluno(a)'] == login_aluno].reset_index()
+    #st.dataframe(base_resultados_2fase_debate2)
+    data = [
+    {'Temas': 'Tema 1',  'Comunicação Assertiva - Resultado Individual': base_resultados_2fase_debate3['Tema 1 - Comunicação assertiva'][0], 'Comunicação Assertiva - Resultado Geral': round(base_resultados_2fase_debate2['Tema 1 - Comunicação assertiva'].mean(),1), 'Interação com pessoas - Resultado Individual':base_resultados_2fase_debate3['Tema 1 - Interação com pessoas'][0], 'Interação com pessoas - Resultado Geral': round(base_resultados_2fase_debate2['Tema 1 - Interação com pessoas'].mean(),1), 'Pensamento crítico - Resultado Individual': base_resultados_2fase_debate3['Tema 1 - Pensamento crítico'][0], 'Pensamento crítico - Resultado Geral': round(base_resultados_2fase_debate2['Tema 1 - Pensamento crítico'].mean(),1)},
 
 
+    {'Temas': 'Tema 2', 'Comunicação Assertiva - Resultado Individual': base_resultados_2fase_debate3['Tema 2 - Comunicação assertiva'][0], 'Comunicação Assertiva - Resultado Geral': round(base_resultados_2fase_debate2['Tema 2 - Comunicação assertiva'].mean(),1), 'Interação com pessoas - Resultado Individual':base_resultados_2fase_debate3['Tema 2 - Interação com pessoas'][0], 'Interação com pessoas - Resultado Geral': round(base_resultados_2fase_debate2['Tema 2 - Interação com pessoas'].mean(),1), 'Pensamento crítico - Resultado Individual': base_resultados_2fase_debate3['Tema 2 - Pensamento crítico'][0], 'Pensamento crítico - Resultado Geral': round(base_resultados_2fase_debate2['Tema 2 - Pensamento crítico'].mean(),1)}, 
+
+
+    {'Temas': 'Tema 3', 'Comunicação Assertiva - Resultado Individual': base_resultados_2fase_debate3['Tema 3 - Comunicação assertiva'][0], 'Comunicação Assertiva - Resultado Geral': round(base_resultados_2fase_debate2['Tema 3 - Comunicação assertiva'].mean(),1), 'Interação com pessoas - Resultado Individual':base_resultados_2fase_debate3['Tema 3 - Interação com pessoas'][0], 'Interação com pessoas - Resultado Geral': round(base_resultados_2fase_debate2['Tema 3 - Interação com pessoas'].mean(),1), 'Pensamento crítico - Resultado Individual': base_resultados_2fase_debate3['Tema 3 - Pensamento crítico'][0], 'Pensamento crítico - Resultado Geral': round(base_resultados_2fase_debate2['Tema 3 - Pensamento crítico'].mean(),1)},
+
+
+    {'Temas': 'Tema 4', 'Comunicação Assertiva - Resultado Individual': base_resultados_2fase_debate3['Tema 4 - Comunicação assertiva'][0], 'Comunicação Assertiva - Resultado Geral': round(base_resultados_2fase_debate2['Tema 4 - Comunicação assertiva'].mean(),1), 'Interação com pessoas - Resultado Individual':base_resultados_2fase_debate3['Tema 4 - Interação com pessoas'][0], 'Interação com pessoas - Resultado Geral': round(base_resultados_2fase_debate2['Tema 4 - Interação com pessoas'].mean(),1), 'Pensamento crítico - Resultado Individual': base_resultados_2fase_debate3['Tema 4 - Pensamento crítico'][0], 'Pensamento crítico - Resultado Geral': round(base_resultados_2fase_debate2['Tema 4 - Pensamento crítico'].mean(),1)},
+
+
+    {'Temas': 'Total', 'Comunicação Assertiva - Resultado Individual': round((base_resultados_2fase_debate3['Tema 1 - Comunicação assertiva'][0]+base_resultados_2fase_debate3['Tema 2 - Comunicação assertiva'][0]+base_resultados_2fase_debate3['Tema 3 - Comunicação assertiva'][0]+base_resultados_2fase_debate3['Tema 4 - Comunicação assertiva'][0])/4,1), 'Comunicação assertiva - Resultado Geral': round((base_resultados_2fase_debate2['Tema 1 - Comunicação assertiva'].mean() + base_resultados_2fase_debate2['Tema 2 - Comunicação assertiva'].mean() + base_resultados_2fase_debate2['Tema 3 - Comunicação assertiva'].mean() + base_resultados_2fase_debate2['Tema 4 - Comunicação assertiva'].mean())/4,1), 'Interação com pessoas - Resultado Individual': round((base_resultados_2fase_debate3['Tema 1 - Interação com pessoas'][0]+base_resultados_2fase_debate3['Tema 2 - Interação com pessoas'][0]+base_resultados_2fase_debate3['Tema 3 - Interação com pessoas'][0]+base_resultados_2fase_debate3['Tema 4 - Interação com pessoas'][0])/4,1), 'Interação com pessoas - Resultado Geral': round(((base_resultados_2fase_debate2['Tema 1 - Interação com pessoas'].mean() + base_resultados_2fase_debate2['Tema 2 - Interação com pessoas'].mean() + base_resultados_2fase_debate2['Tema 3 - Interação com pessoas'].mean() + base_resultados_2fase_debate2['Tema 4 - Interação com pessoas'].mean())/4),1), 'Pensamento crítico - Resultado Individual': round((base_resultados_2fase_debate3['Tema 1 - Pensamento crítico'][0]+base_resultados_2fase_debate3['Tema 2 - Pensamento crítico'][0]+base_resultados_2fase_debate3['Tema 3 - Pensamento crítico'][0]+base_resultados_2fase_debate3['Tema 4 - Pensamento crítico'][0])/4,1), 'Pensamento crítico - Resultado Geral': round((base_resultados_2fase_debate2['Tema 1 - Pensamento crítico'].mean() + base_resultados_2fase_debate2['Tema 2 - Pensamento crítico'].mean() + base_resultados_2fase_debate2['Tema 3 - Pensamento crítico'].mean() + base_resultados_2fase_debate2['Tema 4 - Pensamento crítico'].mean())/4,1)}
+    ]
+
+    tabela_debate = pd.DataFrame(data)
+
+    for i in range(len(tabela_debate)):
+        if tabela_debate['Comunicação Assertiva - Resultado Individual'][i] > tabela_debate['Comunicação Assertiva - Resultado Geral'][i] and tabela_debate['Interação com pessoas - Resultado Individual'][i] > tabela_debate['Interação com pessoas - Resultado Geral'][i] and tabela_debate['Pensamento crítico - Resultado Individual'][i] > tabela_debate['Pensamento crítico - Resultado Geral'][i]:
+            cor_back.append('#a5ffa5')
+            cor_texto.append('#008800')
+        else:
+            cor_back.append('#ffb1b1')
+            cor_texto.append('#a80000')
+
+    #tabela_detalhes_aluno_debate = tabela_debate.sort_values(by = 'Temas', ascending = True).reset_index()
         
+    tabela_final = tabela_questoes_debate(tabela_debate,'Temas', 'Comunicação Assertiva - Resultado Individual', 'Comunicação Assertiva - Resultado Geral', 'Interação com pessoas - Resultado Individual', 'Interação com pessoas - Resultado Geral', 'Pensamento crítico - Resultado Individual', 'Pensamento crítico - Resultado Geral', cor_texto,cor_back)
+        
+    with st.container():
+            col1, col2, col3 = st.columns([0.5, 20, 0.5])
+            with col1:
+                st.write("")
+            with col2:
+                st.markdown(tabela_final, unsafe_allow_html=True)
+            with col3:
+                st.write("")
+    
+
+    ### ARGUIÇÃO
+
+    base_resultados_2fase_arguicao = pd.DataFrame()
+    base_resultados_2fase_arguicao = base_resultados_2fase
+    
+    base_resultados_2fase_arguicao2 = base_resultados_2fase_arguicao.drop(columns = ['Tema 1 - Comunicação assertiva','Tema 1 - Interação com pessoas','Tema 1 - Pensamento crítico','Tema 2 - Comunicação assertiva','Tema 2 - Interação com pessoas','Tema 2 - Pensamento crítico','Tema 3 - Comunicação assertiva','Tema 3 - Interação com pessoas','Tema 3 - Pensamento crítico','Tema 4 - Comunicação assertiva','Tema 4 - Interação com pessoas','Tema 4 - Pensamento crítico'])
+   
+    base_resultados_2fase_arguicao2['Nota 2º fase'] = 125*(base_resultados_2fase_arguicao2['Tema 1 - Aprender a aprender'] + base_resultados_2fase_arguicao2['Tema 2 - Aprender a aprender'])
+    
+    html_header_2fase="""
+    <h2 style="font-size:200%; color: #FF00CE; font-family:Georgia"> ARGUIÇÃO<br>
+     <hr style= "  display: block;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: inset;
+      border-width: 1.5px;"></h2>
+    """
+    st.markdown(html_br, unsafe_allow_html=True)
+    st.markdown(html_header_2fase, unsafe_allow_html=True)
+
+    html_card_header1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <h4 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Nota</h4>
+      </div>
+    </div>
+    """
+    html_card_footer1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 0px 0px 10px 10px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Nota máxima: 1000</p>
+      </div>
+    </div>
+    """
+
+    html_card_footer_med1="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 10px 10px; background: #c5ffff; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#c5ffff; color:#008181; font-family:Georgia; text-align: center; padding: 0px 0;">Média Geral: """+str(int(round(base_resultados_2fase_arguicao2['Nota 2º fase'].mean(),0)))+"""</p>
+      </div>
+    </div>
+    """
+    html_card_header3="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <h4 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Classificação</h4>
+      </div>
+    </div>
+    """
+    html_card_footer3="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 0px 0px 10px 10px; background: #ffd8f8; padding-top: 12px; width: 350px;
+       height: 50px;">
+        <p class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 0px 0;">Quantidade de alunos: """+str(numero_candidatos)+"""</p>
+      </div>
+    </div>
+    """
+    base_resultados_2fase_aluno_arguicao = base_resultados_2fase_arguicao2.sort_values(by = 'Nota 2º fase', ascending = False).reset_index(drop = True).reset_index()
+    base_resultados_2fase_aluno_arguicao.rename(columns = {'index':'Classificação'}, inplace = True)
+    base_resultados_2fase_aluno_arguicao2 = base_resultados_2fase_aluno_arguicao[base_resultados_2fase_aluno_arguicao['Login do aluno(a)'] == login_aluno].reset_index()
+    base_resultados_2fase_aluno_arguicao2['Classificação'][0] = base_resultados_2fase_aluno_arguicao2['Classificação'][0] + 1
+    
+    #st.dataframe(base_resultados_2fase_aluno)
+    ### Block 1#########################################################################################
+    with st.container():
+        col1, col2, col3, col4, col5, col6, col7 = st.columns([1,20,1,20,1,20,1])
+        with col1:
+            st.write("")
+        with col2:
+            st.markdown(html_card_header1, unsafe_allow_html=True)
+            fig_c1 = go.Figure(go.Indicator(
+                mode="number+delta",
+                value=round(base_resultados_2fase_aluno_arguicao2['Nota 2º fase'].mean(),1),
+                number={'suffix': "", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
+                delta={'position': "bottom", 'reference': int(round(truncar(base_resultados_2fase_arguicao['Nota 2º fase'].mean(),-1),0)), 'relative': False},
+                domain={'x': [0, 1], 'y': [0, 1]}))
+            fig_c1.update_layout(autosize=False,
+                                 width=350, height=90, margin=dict(l=20, r=20, b=20, t=50),
+                                 paper_bgcolor="#FFF0FC", font={'size': 20})
+            fig_c1.update_traces(delta_decreasing_color="#FF4136",
+                                delta_increasing_color="#3D9970",
+                                delta_valueformat='.0f',
+                                selector=dict(type='indicator'))
+            st.plotly_chart(fig_c1)
+            st.markdown(html_card_footer1, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_card_footer_med1, unsafe_allow_html=True)
+        with col3:
+            st.write("")
+        with col4:
+            st.markdown(html_card_header3, unsafe_allow_html=True)
+            fig_c3 = go.Figure(go.Indicator(
+                mode="number",
+                value=base_resultados_2fase_aluno_arguicao2['Classificação'][0],
+                number={'suffix': "º", "font": {"size": 40, 'color': "#C81F6D", 'family': "Arial"}},
+                delta={'position': "bottom", 'reference': 1, 'relative': False},
+                domain={'x': [0, 1], 'y': [0, 1]}))
+            fig_c3.update_layout(autosize=False,
+                                 width=350, height=90, margin=dict(l=20, r=20, b=20, t=50),
+                                 paper_bgcolor="#FFF0FC", font={'size': 20})
+            fig_c3.update_traces(delta_decreasing_color="#3D9970",
+                                 delta_increasing_color="#FF4136",
+                                 delta_valueformat='.3f',
+                                 selector=dict(type='indicator'))
+            st.plotly_chart(fig_c3)
+            st.markdown(html_card_footer3, unsafe_allow_html=True)
+        with col5:
+            st.write("")
+        with col6:
+            st.write("")
+        with col7:
+            st.write("")
+    
+    st.markdown(html_br, unsafe_allow_html=True)
+    st.markdown(html_br, unsafe_allow_html=True)
+
+    ponto = str(round(100*(numero_candidatos-(base_resultados_2fase_aluno_debate2['Classificação'][0]-1))/numero_candidatos,0)).find('.')
+    texto = str(round(100*(numero_candidatos-(base_resultados_2fase_aluno_debate2['Classificação'][0]-1))/numero_candidatos,0))[0:ponto]
+    html_card_header_destaques_gerais="""
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 60px; width: 495px;
+       height: 150px;">
+        <h5 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 10px 0;">Você foi melhor que """+texto+"""% dos alunos!</h5>
+      </div>
+    </div>
+    """    
+    ### Block 1#########################################################################################
+    with st.container():
+        col1, col2, col3, col4, col5 = st.columns([9,25,2,25,4])
+        with col1:
+            st.write("")
+        with col2:
+            # create the bins
+            counts, bins = np.histogram(base_resultados_2fase_debate2['Nota 2º fase'], bins=range(0, 1100, 100))
+            bins = 0.5 * (bins[:-1] + bins[1:])
+            fig = px.bar(x=bins, y=counts, labels={'x':'Nota no simulado', 'y':'Número de alunos'})
+            fig.update_layout(title={'text': "Distribuição de notas", 'x': 0.5}, paper_bgcolor="#FFF0FC", 
+                           plot_bgcolor="#FFF0FC", font={'color': "#C81F6D", 'size': 14, 'family': "Georgia"}, height=400,
+                           width=540,
+                           legend=dict(orientation="h",
+                                       yanchor="top",
+                                       y=0.99,
+                                       xanchor="left",
+                                       x=0.01),
+                           margin=dict(l=1, r=1, b=1, t=30))
+            fig.add_vline(x=int(round(base_resultados_2fase_aluno_debate2['Nota 2º fase'].mean(),1)), line_width=7, line_dash="dash", line_color="#FF00CE", annotation_text="Você está aqui!", annotation_position="top right")
+            fig.add_vline(x=int(round(truncar(base_resultados_2fase_debate2['Nota 2º fase'].mean(),-1),0)), line_width=7, line_dash="dash", line_color="#fedc00", annotation_text="Média", annotation_position="top right")
+            fig.update_xaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=6, rangemode="tozero",
+                          showgrid=False, gridwidth=0.5, gridcolor='#f6f6f6')
+            fig.update_yaxes(showline=True, linewidth=1, linecolor='#f6f6f6', mirror=False, nticks=10, rangemode="tozero",
+                          showgrid=True, gridwidth=0.5, gridcolor='#f6f6f6')
+            fig.update_traces(marker_color='#01e1e1')
+            st.plotly_chart(fig)
+        with col3:
+            st.write("")
+        with col4:
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_br, unsafe_allow_html=True)
+            st.markdown(html_card_header_destaques_gerais, unsafe_allow_html=True)
+        with col5:
+            st.write("")
