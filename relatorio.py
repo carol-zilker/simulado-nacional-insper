@@ -3135,7 +3135,7 @@ if login_aluno != '':
     tabela_final2 = tabela_questoes_arguicao(tabela_arguicao,'Temas', 'Aprender a aprender - Resultado Individual', 'Aprender a aprender - Resultado Geral', cor_texto,cor_back)
         
     with st.container():
-            col1, col2, col3 = st.columns([8, 20, 8])
+            col1, col2, col3 = st.columns([10, 20, 10])
             with col1:
                 st.write("")
             with col2:
