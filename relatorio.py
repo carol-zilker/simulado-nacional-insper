@@ -2925,7 +2925,7 @@ if login_aluno != '':
     tabela_final = tabela_questoes_debate(tabela_debate,'Temas', 'Comunicação Assertiva - Resultado Individual', 'Comunicação Assertiva - Resultado Geral', 'Interação com pessoas - Resultado Individual', 'Interação com pessoas - Resultado Geral', 'Pensamento crítico - Resultado Individual', 'Pensamento crítico - Resultado Geral', cor_texto,cor_back)
         
     with st.container():
-            col1, col2, col3 = st.columns([2, 20, 2])
+            col1, col2, col3 = st.columns([3, 20, 3])
             with col1:
                 st.write("")
             with col2:
