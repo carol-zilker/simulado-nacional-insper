@@ -3003,10 +3003,10 @@ if login_aluno != '':
     #st.dataframe(base_resultados_2fase_aluno_arguicao)
     base_resultados_2fase_aluno_arguicao2 = base_resultados_2fase_aluno_arguicao[base_resultados_2fase_aluno_arguicao['Login do aluno(a)'] == login_aluno].reset_index()
     st.dataframe(base_resultados_2fase_aluno_arguicao2)
-    if base_resultados_2fase_aluno_arguicao2['Nota 2ºfase'][0] > 0:
-        base_resultados_2fase_aluno_arguicao2['Classificação'][0] = base_resultados_2fase_aluno_arguicao2['Classificação'][0] + 1
-    else:
+    if base_resultados_2fase_aluno_arguicao2['Nota 2º fase'][0] == 0:
         base_resultados_2fase_aluno_arguicao2['Classificação'][0] = numero_candidatos + 1
+    else:
+        base_resultados_2fase_aluno_arguicao2['Classificação'][0] = base_resultados_2fase_aluno_arguicao2['Classificação'][0] + 1
     
     #st.dataframe(base_resultados_2fase_aluno)
     ### Block 1#########################################################################################
