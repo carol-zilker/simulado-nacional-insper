@@ -2004,7 +2004,7 @@ if login_aluno != '':
     for i in range(len(base_redacao)):
         base_redacao['Acerto'][i] = base_redacao['Nota na questão'][i]/base_redacao['Valor da questão'][i]
     
-    base_redacao2 = base_redacao[base_redacao['Nota na questão'] > 0]
+    base_redacao2 = base_redacao[base_redacao['Nota na questão'] >= 0]
 
     redacao_detalhes_media = base_redacao2.groupby('Competência').mean().reset_index()
     
