@@ -3157,7 +3157,7 @@ if login_aluno != '':
     #st.dataframe(resultado_final)
 
     html_header_2fase="""
-    <h2 style="font-size:200%; color: #FF00CE; font-family:Georgia"> 2º FASE<br>
+    <h2 style="font-size:200%; color: #FF00CE; font-family:Georgia"> RESULTADO FINAL<br>
      <hr style= "  display: block;
       margin-top: 0.5em;
       margin-bottom: 0.5em;
