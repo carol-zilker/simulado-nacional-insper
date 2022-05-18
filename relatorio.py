@@ -3325,17 +3325,14 @@ if login_aluno != '':
             st.markdown(html_card_header_destaques_gerais, unsafe_allow_html=True)
         with col5:
             st.write("")
-
     html_final="""
-    <h2 style="font-size:50%; color: #FF00CE; font-family:Georgia"> Sucesso é o acúmulo de pequenos esforços, repetidos dia e noite. Robert Collier<br>
-     <hr style= "  display: block;
-      margin-top: 0.5em;
-      margin-bottom: 0.5em;
-      margin-left: auto;
-      margin-right: auto;
-      border-style: inset;
-      border-width: 1.5px;"></h2>
-    """
+    <div class="card">
+      <div class="card-body" style="border-radius: 10px 10px 0px 0px; background: #ffd8f8; padding-top: 60px; width: 495px;
+       height: 150px;">
+        <h5 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 10px 0;">Sucesso é o acúmulo de pequenos esforços, repetidos dia e noite. Robert Collier</h5>
+      </div>
+    </div>
+    """ 
 
     with st.container():
         col1, col2, col3 = st.columns([1,10,1])
