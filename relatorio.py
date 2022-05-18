@@ -3328,7 +3328,7 @@ if login_aluno != '':
     html_final="""
     <div class="card">
       <div class="card-body" style="border-radius: 10px 10px 10px 10px; background: #ffd8f8; padding-top: 20px; padding-bottom: 20px; width: 800px;
-       height: 80px;">
+       height: 100px;">
         <h5 class="card-title" style="background-color:#ffd8f8; color:#C81F6D; font-family:Georgia; text-align: center; padding: 10px 0;">Sucesso é o acúmulo de pequenos esforços, repetidos dia e noite. Robert Collier</h5>
       </div>
     </div>
