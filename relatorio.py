@@ -3335,7 +3335,7 @@ if login_aluno != '':
     """ 
 
     with st.container():
-        col1, col2, col3 = st.columns([1,10,1])
+        col1, col2, col3 = st.columns([3,3,3])
         with col1:
             st.write("")
         with col2:
