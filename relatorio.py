@@ -3154,7 +3154,7 @@ if login_aluno != '':
     for i in range(len(resultado_final['Login do aluno(a)'])):
         #resultado_final['Nota Final'][i] = sqrt(sqrt(float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 1º fase'][i])*float(resultado_final['Nota 2º fase'][i])))
         resultado_final['Nota Final'][i] = ((resultado_final['Nota 1º fase'][i]**3)*resultado_final['Nota 2º fase'][i])**0.25
-    st.dataframe(resultado_final)
+    #st.dataframe(resultado_final)
 
     html_header_2fase="""
     <h2 style="font-size:200%; color: #FF00CE; font-family:Georgia"> 2º FASE<br>
@@ -3325,3 +3325,13 @@ if login_aluno != '':
             st.markdown(html_card_header_destaques_gerais, unsafe_allow_html=True)
         with col5:
             st.write("")
+
+    with st.container():
+        col1, col2, col3 = st.columns([1,10,1])
+        with col1:
+            st.write("")
+        with col2:
+            st.write("Sucesso é o acúmulo de pequenos esforços, repetidos dia e noite. Robert Collier")
+        with col3:
+            st.write("")
+        
