@@ -3326,12 +3326,23 @@ if login_aluno != '':
         with col5:
             st.write("")
 
+    html_final="""
+    <h2 style="font-size:50%; color: #FF00CE; font-family:Georgia"> Sucesso é o acúmulo de pequenos esforços, repetidos dia e noite. Robert Collier<br>
+     <hr style= "  display: block;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      margin-left: auto;
+      margin-right: auto;
+      border-style: inset;
+      border-width: 1.5px;"></h2>
+    """
+
     with st.container():
         col1, col2, col3 = st.columns([1,10,1])
         with col1:
             st.write("")
         with col2:
-            st.write("Sucesso é o acúmulo de pequenos esforços, repetidos dia e noite. Robert Collier")
+            st.markdown(html_final, unsafe_allow_html=True)
         with col3:
             st.write("")
         
