@@ -2934,6 +2934,7 @@ if login_aluno != '':
             with col3:
                 st.write("")
 
+    st.markdown(html_br, unsafe_allow_html=True)
 
     with st.container():
             col1, col2, col3 = st.columns([6, 20, 8])
@@ -3158,13 +3159,15 @@ if login_aluno != '':
     tabela_final_temas_arguicao = fun_tabela_temas_arguicao(tabela_temas_arguicao,'Temas',cor_texto_arguicao,cor_back_arguicao)
 
     with st.container():
-            col1, col2, col3 = st.columns([2, 20, 2])
+            col1, col2, col3 = st.columns([3, 5 , 3])
             with col1:
                 st.write("")
             with col2:
                 st.markdown(tabela_final_temas_arguicao, unsafe_allow_html=True)
             with col3:
                 st.write("")   
+
+    st.markdown(html_br, unsafe_allow_html=True)
 
     with st.container():
             col1, col2, col3 = st.columns([3, 5, 3])
