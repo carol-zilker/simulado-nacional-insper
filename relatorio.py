@@ -134,7 +134,7 @@ st.markdown(html_header, unsafe_allow_html=True)
 
 ### Leitura das bases de dados
 
-base_matriz = pd.read_csv('Simulado Nacional Insper 2022.2 - [RELATÓRIO] Matriz de Questões 2022.2.csv', encoding='ISO-8859-1')
+base_matriz = pd.read_csv('matriz_questoes.csv')
 base_resultados = pd.read_csv('./Simulado Nacional Insper 2022.2 - [RELATÓRIO] Base de Dados 2022.2.csv')
 base_resultados_2fase = pd.read_csv('./Simulado Nacional Insper 2022.2 - Simulado2fase 2022.2.csv')
 #base_resultados_2fase = pd.read_csv('./Jazz Vestibular - 2022.2 - Operacao - [RELATORIO] Base de Dados 2 fase copy.csv')
