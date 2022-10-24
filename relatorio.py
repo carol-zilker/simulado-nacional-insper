@@ -2912,7 +2912,29 @@ if login_aluno != '':
     #tabela_detalhes_aluno_debate = tabela_debate.sort_values(by = 'Temas', ascending = True).reset_index()
         
     tabela_final = tabela_questoes_debate(tabela_debate,'Temas', 'Comunicação Assertiva - Resultado Individual', 'Comunicação Assertiva - Resultado Geral', 'Interação com pessoas - Resultado Individual', 'Interação com pessoas - Resultado Geral', 'Pensamento crítico - Resultado Individual', 'Pensamento crítico - Resultado Geral', cor_texto,cor_back)
-        
+
+    tabela_temas_debate = pd.DataFrame()
+
+    tabela_temas_debate['Temas'] = ['Tema 1 - O Congresso Nacional deveria legalizar o aborto no Brasil para qualquer caso desde que seja de livre e espontânea vontade da mulher?', 'Tema 2 - É justificável o desmatamento para a implantação da pecuária e de outras atividades que visam satisfazer as várias e diferentes necessidades humanas atuais?', 'Tema 3 - A política de cotas para indígenas e afrodescendentes ingressarem em universidades públicas ajuda a diminuir a desigualdade social?', 'Tema 4 - É benéfica para a sociedade a privatização e consequente cobrança pela utilização de parques e espaços públicos de lazer?']
+
+    cor_back_debate = []
+    cor_texto_debate = []
+    for i in range(len(tabela_temas_debate)):
+        cor_back_debate.append('#a5ffa5')
+        cor_texto_debate.append('#008800')
+
+    tabela_final_temas_debate = fun_tabela_temas_debate(tabela_temas_debate,'Temas',cor_texto_debate,cor_back_debate)
+
+    with st.container():
+            col1, col2, col3 = st.columns([2, 20, 2])
+            with col1:
+                st.write("")
+            with col2:
+                st.markdown(tabela_final_temas_debate, unsafe_allow_html=True)
+            with col3:
+                st.write("")
+
+
     with st.container():
             col1, col2, col3 = st.columns([6, 20, 8])
             with col1:
@@ -3122,7 +3144,28 @@ if login_aluno != '':
     #tabela_detalhes_aluno_debate = tabela_debate.sort_values(by = 'Temas', ascending = True).reset_index()
         
     tabela_final2 = tabela_questoes_arguicao(tabela_arguicao,'Temas', 'Aprender a aprender - Resultado Individual', 'Aprender a aprender - Resultado Geral', cor_texto,cor_back)
-        
+
+    tabela_temas_arguicao = pd.DataFrame()
+
+    tabela_temas_arguicao['Temas'] = ['Tema 1 - No Brasil, o cumprimento de serviço militar deveria ser obrigatório também para as mulheres?','Tema 2 - A compra e o porte de armas de fogo devem ser liberados no Brasil?']
+
+    cor_back_arguicao = []
+    cor_texto_arguicao = []
+    for i in range(len(tabela_temas_arguicao)):
+        cor_back_arguicao.append('#a5ffa5')
+        cor_texto_arguicao.append('#008800')
+
+    tabela_final_temas_arguicao = fun_tabela_temas_arguicao(tabela_temas_arguicao,'Temas',cor_texto_arguicao,cor_back_arguicao)
+
+    with st.container():
+            col1, col2, col3 = st.columns([2, 20, 2])
+            with col1:
+                st.write("")
+            with col2:
+                st.markdown(tabela_final_temas_debate, unsafe_allow_html=True)
+            with col3:
+                st.write("")   
+
     with st.container():
             col1, col2, col3 = st.columns([3, 5, 3])
             with col1:

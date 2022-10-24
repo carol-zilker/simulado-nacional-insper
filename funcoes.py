@@ -943,3 +943,45 @@ def tabela_questoes(dataframe,coluna1,coluna2,coluna3,coluna4,coluna5,coluna6,co
     </table>
     """
     return html_table_questoes
+
+def fun_tabela_temas_debate(dataframe,coluna1,cor_texto,cor_back):
+    html_table_temas_debate=""" 
+    <table bordercolor=#FFF0FC>
+      <tr style="background-color:#ffd8f8; height: 90px; color:#C81F6D; font-family:Georgia; font-size: 17px; text-align: center">
+        <th style="width:100px; bordercolor=#FFF0FC">Temas</th>
+        <th style="width:200px; bordercolor=#FFF0FC">Aprender a aprender - Resultado Individual</th>
+        <th style="width:350px; bordercolor=#FFF0FC">Aprender a aprender - Resultado Geral</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[0]+"""; height: 42px; color:"""+cor_texto[0]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][0])+"""</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[1]+"""; height: 42px; color:"""+cor_texto[1]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][1])+"""</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[2]+"""; height: 42px; color:"""+cor_texto[2]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][2])+"""</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[3]+"""; height: 42px; color:"""+cor_texto[3]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][3])+"""</th>
+      </tr>
+       </table>
+    """
+    return html_table_temas_debate
+
+def fun_tabela_temas_arguicao(dataframe,coluna1,cor_texto,cor_back):
+    html_table_temas_arguicao=""" 
+    <table bordercolor=#FFF0FC>
+      <tr style="background-color:#ffd8f8; height: 90px; color:#C81F6D; font-family:Georgia; font-size: 17px; text-align: center">
+        <th style="width:100px; bordercolor=#FFF0FC">Temas</th>
+        <th style="width:200px; bordercolor=#FFF0FC">Aprender a aprender - Resultado Individual</th>
+        <th style="width:350px; bordercolor=#FFF0FC">Aprender a aprender - Resultado Geral</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[0]+"""; height: 42px; color:"""+cor_texto[0]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][0])+"""</th>
+      </tr>
+      <tr style="background-color:"""+cor_back[1]+"""; height: 42px; color:"""+cor_texto[1]+"""; font-size: 16px;text-align: center">
+        <th>"""+str(dataframe[coluna1][1])+"""</th>
+      </tr>
+       </table>
+    """
+    return html_table_temas_arguicao
