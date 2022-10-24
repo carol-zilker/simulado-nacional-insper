@@ -135,8 +135,8 @@ st.markdown(html_header, unsafe_allow_html=True)
 ### Leitura das bases de dados
 
 base_matriz = pd.read_csv('matriz_questoes.csv')
-base_resultados = pd.read_csv('./Simulado Nacional Insper 2022.2 - [RELATÓRIO] Base de Dados 2022.2.csv')
-base_resultados_2fase = pd.read_csv('./Simulado Nacional Insper 2022.2 - Simulado2fase 2022.2.csv')
+base_resultados = pd.read_csv('base_dados_1_fase.csv')
+base_resultados_2fase = pd.read_csv('resultado_2_fase.csv')
 #base_resultados_2fase = pd.read_csv('./Jazz Vestibular - 2022.2 - Operacao - [RELATORIO] Base de Dados 2 fase copy.csv')
 #st.dataframe(base_resultados_2fase)
 #base_resultados_2fase = pd.read_csv('./Jazz Vestibular - 2022.2 - Operacao - [RELATORIO] Base de Dados 2 fase copy.csv')
@@ -231,7 +231,7 @@ if len(login_aluno) > 0:
     """
     st.markdown(html_br, unsafe_allow_html=True)
 if login_aluno != '':
-    resultados_gerais3.to_csv('Simulado Nacional Insper 2022.2 - Resultado 2022.2.csv')
+    resultados_gerais3.to_csv('resultado_compilado.csv')
     resultados_gerais_aluno = resultados_gerais3[resultados_gerais3['Nome do aluno(a)'] == nome_aluno3['Nome do aluno(a)'][0]].reset_index()
     resultados_gerais_aluno.rename(columns = {'index':'Classificação'}, inplace = True)
     resultados_gerais_aluno['Classificação'][0] = resultados_gerais_aluno['Classificação'][0] + 1
@@ -1986,7 +1986,7 @@ if login_aluno != '':
 
     ### Redação
 
-    base_redacao = pd.read_csv(('./Simulado Nacional Insper 2022.2 - [RELATÓRIO] Base de Dados Redação 2022.2.csv'))
+    base_redacao = pd.read_csv(('base_dados_redacao.csv'))
     
     base_redacao['Acerto'] = 0.00
     for i in range(len(base_redacao)):
