@@ -2926,7 +2926,7 @@ if login_aluno != '':
     tabela_final_temas_debate = fun_tabela_temas_debate(tabela_temas_debate,'Temas',cor_texto_debate,cor_back_debate)
 
     with st.container():
-            col1, col2, col3 = st.columns([6, 20, 6])
+            col1, col2, col3 = st.columns([6, 20, 8])
             with col1:
                 st.write("")
             with col2:
