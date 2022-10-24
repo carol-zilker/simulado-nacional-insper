@@ -2937,7 +2937,7 @@ if login_aluno != '':
     st.markdown(html_br, unsafe_allow_html=True)
 
     with st.container():
-            col1, col2, col3 = st.columns([6, 20, 6])
+            col1, col2, col3 = st.columns([6, 20, 8])
             with col1:
                 st.write("")
             with col2:
