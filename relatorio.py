@@ -3162,7 +3162,7 @@ if login_aluno != '':
             with col1:
                 st.write("")
             with col2:
-                st.markdown(tabela_final_temas_debate, unsafe_allow_html=True)
+                st.markdown(tabela_final_temas_arguicao, unsafe_allow_html=True)
             with col3:
                 st.write("")   
 
