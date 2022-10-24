@@ -134,24 +134,25 @@ st.markdown(html_header, unsafe_allow_html=True)
 
 ### Leitura das bases de dados
 
-base_matriz = pd.read_csv('./Jazz Vestibular - 2022.2 - Operação - [RELATÓRIO] Matriz de Questões.csv')
-base_resultados = pd.read_csv('./Jazz Vestibular - 2022.2 - Operação - [RELATÓRIO] Base de Dados.csv')
-base_resultados_2fase = pd.read_csv('./Simulado2fase.csv')
+base_matriz = pd.read_csv('./Simulado Nacional Insper 2022.2 - [RELATÓRIO] Matriz de Questões 2022.2.csv')
+base_resultados = pd.read_csv('./Simulado Nacional Insper 2022.2 - [RELATÓRIO] Base de Dados 2022.2.csv')
+base_resultados_2fase = pd.read_csv('./Simulado Nacional Insper 2022.2 - Simulado2fase 2022.2.csv')
 #base_resultados_2fase = pd.read_csv('./Jazz Vestibular - 2022.2 - Operacao - [RELATORIO] Base de Dados 2 fase copy.csv')
 #st.dataframe(base_resultados_2fase)
 #base_resultados_2fase = pd.read_csv('./Jazz Vestibular - 2022.2 - Operacao - [RELATORIO] Base de Dados 2 fase copy.csv')
 
 ### Turmas
 
-turma_eng = '#focoinsper - Simulado Nacional - 2022.2 - Engenharias'
-turma_cien = '#focoinsper - Simulado Nacional - 2022.2 - Ciências da Computação'
-turma_adm = '#focoinsper - Simulado Nacional - 2022.2 - Administração'
-turma_eco = '#focoinsper - Simulado Nacional - 2022.2 - Economia'
-turma_dir = '#focoinsper - Simulado Nacional - 2022.2 - Direito'
+turma_eng = 'Simulado Nacional Insper - 2022.2 - Engenharias'
+turma_cien = 'Simulado Nacional Insper - 2022.2 - Ciências de Computação'
+turma_adm = 'Simulado Nacional Insper - 2022.2 - Administração'
+turma_eco = 'Simulado Nacional Insper - 2022.2 - Economia'
+turma_dir = 'Simulado Nacional Insper - 2022.2 - Direito'
 
 ### Renomeando colunas e ajustando células vazias
 
 base = pd.merge(base_resultados, base_matriz, on = 'num_exercicio', how = 'inner')
+
 base.rename(columns = {'atividade_nome':'Nome da avaliação','turma':'Turma','aluno_nome':'Nome do aluno(a)','aluno_login':'Login do aluno(a)','num_exercicio':'Número da questão','resp_aluno':'Resposta do aluno(a)','gabarito':'Gabarito','certo_ou_errado':'Certo ou errado','tempo_no_exercicio(s)':'Tempo na questão','valor_do_exercicio':'Valor da questão','disciplina':'Disciplina','frente':'Frente','assunto':'Assunto'}, inplace = True)
 base['Resposta do aluno(a)'] = base['Resposta do aluno(a)'].fillna('x')
 base['Tempo na questão'] = base['Tempo na questão'].fillna(0)
@@ -160,14 +161,14 @@ base['Valor da questão'] = base['Valor da questão'].apply(lambda x: float(x.re
 ### Resultados Gerais
 
 base['Acerto'] = 0.00
-
 base['Nota na questão'] = 0.00
+
 for i in range(len(base['Nome da avaliação'])):
     if base['Certo ou errado'][i] == 'certo':
         base['Acerto'][i] = 1
         base['Nota na questão'][i] = base['Acerto'][i]*base['Valor da questão'][i]
     if base['Número da questão'][i] == 73 and base['Resposta do aluno(a)'][i] != 'x':
-        base['Acerto'][i] = 0.2+0.8*float(base['Resposta do aluno(a)'][i])/(base['Valor da questão'][i])
+        base['Acerto'][i] = float(base['Resposta do aluno(a)'][i])/base['Valor da questão'][i]
         base['Nota na questão'][i] = base['Acerto'][i]*base['Valor da questão'][i]
 
 resultados_gerais = base.groupby(['Nome da avaliação','Turma','Nome do aluno(a)','Login do aluno(a)']).sum().reset_index()
@@ -222,15 +223,15 @@ if len(login_aluno) > 0:
     """
     st.markdown(html_download_pdfs, unsafe_allow_html=True)
     if turma_aluno['Turma'][0] == turma_eng or turma_aluno['Turma'][0] == turma_cien:
-        st.markdown(get_binary_file_downloader_html('PDFEngCien.pdf', 'Simulado Nacional Insper 1º fase'), unsafe_allow_html=True)
+        st.markdown(get_binary_file_downloader_html('Simulado Nacional Insper 1ª fase - Engenharias e Ciências da Computação.pdf', 'Simulado Nacional Insper 1º fase'), unsafe_allow_html=True)
     else:
-        st.markdown(get_binary_file_downloader_html('PDFAdmEcoDir.pdf', 'Simulado Nacional Insper 1º fase'), unsafe_allow_html=True)
+        st.markdown(get_binary_file_downloader_html('Simulado Nacional Insper 1ª fase - Administração, Economia e Direito.pdf', 'Simulado Nacional Insper 1º fase'), unsafe_allow_html=True)
     html_br="""
     <br>
     """
     st.markdown(html_br, unsafe_allow_html=True)
 if login_aluno != '':
-    resultados_gerais3.to_csv('Resultado.csv')
+    resultados_gerais3.to_csv('Simulado Nacional Insper 2022.2 - Resultado 2022.2.csv')
     resultados_gerais_aluno = resultados_gerais3[resultados_gerais3['Nome do aluno(a)'] == nome_aluno3['Nome do aluno(a)'][0]].reset_index()
     resultados_gerais_aluno.rename(columns = {'index':'Classificação'}, inplace = True)
     resultados_gerais_aluno['Classificação'][0] = resultados_gerais_aluno['Classificação'][0] + 1
@@ -560,7 +561,7 @@ if login_aluno != '':
       </div>
     </div>
     """
-
+    
     html_card_footer2_disc_med_mat="""
     <div class="card">
       <div class="card-body" style="border-radius: 10px 10px 10px 10px; background: #c5ffff; padding-top: 12px; width: 350px;
@@ -808,7 +809,7 @@ if login_aluno != '':
                 st.write("")
 
         st.markdown(html_br, unsafe_allow_html=True)
-
+        
         html_table=""" 
         <table bordercolor=#FFF0FC>
           <tr style="background-color:#ffd8f8; height: 90px; color:#C81F6D; font-family:Georgia; font-size: 17px; text-align: center">
@@ -908,6 +909,19 @@ if login_aluno != '':
             <th>"""+str(matematica_tabela3['Resultado Individual'][12])+"""</th>
             <th>"""+str(matematica_tabela3['Resultado Geral'][12])+"""</th>
             <th>"""+str(matematica_tabela3['Status'][12])+"""</th>
+          <tr style="background-color:#f7d4f0; height: 42px; color:#C81F6D; font-size: 16px;text-align: center">
+            <th>"""+str(matematica_tabela3['Assunto'][13])+"""</th>
+            <th>"""+str(matematica_tabela3['Quantidade de questões'][13])+"""</th>
+            <th>"""+str(matematica_tabela3['Resultado Individual'][13])+"""</th>
+            <th>"""+str(matematica_tabela3['Resultado Geral'][13])+"""</th>
+            <th>"""+str(matematica_tabela3['Status'][13])+"""</th>
+          </tr>
+          <tr style="height: 42px; color:#C81F6D; font-size: 16px;text-align: center">
+            <th>"""+str(matematica_tabela3['Assunto'][14])+"""</th>
+            <th>"""+str(matematica_tabela3['Quantidade de questões'][14])+"""</th>
+            <th>"""+str(matematica_tabela3['Resultado Individual'][14])+"""</th>
+            <th>"""+str(matematica_tabela3['Resultado Geral'][14])+"""</th>
+            <th>"""+str(matematica_tabela3['Status'][14])+"""</th>
           </tr>
           </tr>
         </table>
@@ -1266,13 +1280,6 @@ if login_aluno != '':
             <th>"""+str(linguagens_tabela3['Resultado Individual'][8])+"""</th>
             <th>"""+str(linguagens_tabela3['Resultado Geral'][8])+"""</th>
             <th>"""+str(linguagens_tabela3['Status'][8])+"""</th>
-          </tr>
-          <tr style="background-color:#f7d4f0; height: 42px; color:#C81F6D; font-size: 16px;text-align: center">
-            <th>"""+str(linguagens_tabela3['Assunto'][9])+"""</th>
-            <th>"""+str(linguagens_tabela3['Quantidade de questões'][9])+"""</th>
-            <th>"""+str(linguagens_tabela3['Resultado Individual'][9])+"""</th>
-            <th>"""+str(linguagens_tabela3['Resultado Geral'][9])+"""</th>
-            <th>"""+str(linguagens_tabela3['Status'][9])+"""</th>
           </tr>
         </table>
         """
@@ -1737,19 +1744,6 @@ if login_aluno != '':
                 <th>"""+str(ciencias_tabela3['Resultado Geral'][20])+"""</th>
                 <th>"""+str(ciencias_tabela3['Status'][20])+"""</th>
             </tr>
-            <tr style="background-color:#f7d4f0; height: 42px; color:#C81F6D; font-size: 16px;text-align: center">
-                <th>"""+str(ciencias_tabela3['Assunto'][21])+"""</th>
-                <th>"""+str(ciencias_tabela3['Quantidade de questões'][21])+"""</th>
-                <th>"""+str(ciencias_tabela3['Resultado Individual'][21])+"""</th>
-                <th>"""+str(ciencias_tabela3['Resultado Geral'][21])+"""</th>
-                <th>"""+str(ciencias_tabela3['Status'][21])+"""</th>
-            </tr>
-            <tr style="height: 42px; color:#C81F6D; font-size: 16px;text-align: center">
-                <th>"""+str(ciencias_tabela3['Assunto'][22])+"""</th>
-                <th>"""+str(ciencias_tabela3['Quantidade de questões'][22])+"""</th>
-                <th>"""+str(ciencias_tabela3['Resultado Individual'][22])+"""</th>
-                <th>"""+str(ciencias_tabela3['Resultado Geral'][22])+"""</th>
-                <th>"""+str(ciencias_tabela3['Status'][22])+"""</th>
             </tr>
             </tr>
             </table>
@@ -1992,8 +1986,8 @@ if login_aluno != '':
 
     ### Redação
 
-    base_redacao = pd.read_csv(('./Jazz Vestibular - 2022.2 - Operação - [RELATÓRIO] Base de Dados Redação.csv'))
-
+    base_redacao = pd.read_csv(('./Simulado Nacional Insper 2022.2 - [RELATÓRIO] Base de Dados Redação 2022.2.csv'))
+    
     base_redacao['Acerto'] = 0.00
     for i in range(len(base_redacao)):
         base_redacao['Acerto'][i] = base_redacao['Nota na questão'][i]/base_redacao['Valor da questão'][i]
@@ -2363,7 +2357,7 @@ if login_aluno != '':
         st.markdown(html_subtitle, unsafe_allow_html=True)
         
         
-        tabela_detalhes = base_alunos_fizeram.copy()
+        tabela_detalhes = base.copy()
         
         for i in range(len(tabela_detalhes['Nome do aluno(a)'])):
             if tabela_detalhes['Resposta do aluno(a)'][i] == 'a':
@@ -2391,10 +2385,10 @@ if login_aluno != '':
                 tabela_detalhes['Gabarito'][i] = 'E'
             else:
                 tabela_detalhes['Gabarito'][i] = ''
-        
+        tabela_detalhes_fizeram = tabela_detalhes[tabela_detalhes['Nome do aluno(a)'].isin(alunos_fizeram['Nome do aluno(a)'])].reset_index(drop = True)
         tabela_detalhes_aluno = tabela_detalhes[tabela_detalhes['Login do aluno(a)'] == login_aluno]
         tabela_detalhes_aluno2 = tabela_detalhes_aluno.drop(columns = ['Nota na questão','Valor da questão','Nome do aluno(a)','Login do aluno(a)','Certo ou errado'])
-        tabela_detalhes_media = tabela_detalhes.groupby('Número da questão').mean().reset_index()
+        tabela_detalhes_media = tabela_detalhes_fizeram.groupby('Número da questão').mean().reset_index()
         tabela_detalhes_media2 = tabela_detalhes_media.drop(columns = ['Nota na questão','Valor da questão'])
 
         tabela_detalhes_aluno3 = pd.merge(tabela_detalhes_aluno2, tabela_detalhes_media2, on = 'Número da questão', how = 'inner')
@@ -2410,8 +2404,8 @@ if login_aluno != '':
             #if tabela_detalhes_aluno3['Número da questão'][i] > 90:
             #    tabela_detalhes_aluno3['Número da questão'][i] = tabela_detalhes_aluno3['Número da questão'][i] - 30
         
-        tabela_detalhes_aluno4 = tabela_detalhes_aluno3.drop(columns = ['Nome da avaliação','Turma'])
-        
+        tabela_detalhes_aluno5 = tabela_detalhes_aluno3.drop(columns = ['Nome da avaliação','Turma'])
+        tabela_detalhes_aluno4 = tabela_detalhes_aluno5.sort_values(by = 'Número da questão', ascending = True).reset_index()
         cor_back = []
         cor_texto = []
         
@@ -2430,18 +2424,19 @@ if login_aluno != '':
             tabela_detalhes_aluno4['Tempo na questão_y'][i] = texto1+' min '+texto2+' s' 
             tabela_detalhes_aluno4['Acerto_x'][i] = "{0:.0%}".format(tabela_detalhes_aluno4['Acerto_x'][i])
             tabela_detalhes_aluno4['Acerto_y'][i] = "{0:.0%}".format(tabela_detalhes_aluno4['Acerto_y'][i])
-            if tabela_detalhes_aluno4['Acerto_x'][i] == '100%' or tabela_detalhes_aluno4['Acerto_x'][i] > tabela_detalhes_aluno4['Acerto_y'][i]:
+            
+            if tabela_detalhes_aluno4['Resposta do aluno(a)'][i] == tabela_detalhes_aluno4['Gabarito'][i]:# or (tabela_detalhes_aluno4['Número da questão'][i] == 73 and tabela_detalhes_aluno4['Acerto_x'][i] > tabela_detalhes_aluno4['Acerto_y'][i]): #tabela_detalhes_aluno4['Acerto_x'][i] == '100%' or tabela_detalhes_aluno4['Acerto_x'][i] > tabela_detalhes_aluno4['Acerto_y'][i]:
                 cor_back.append('#a5ffa5')
                 cor_texto.append('#008800')
             else:
                 cor_back.append('#ffb1b1')
                 cor_texto.append('#a80000')
-
+        
         tabela_detalhes_aluno4 = tabela_detalhes_aluno4[['Número da questão','Disciplina','Assunto','Resposta do aluno(a)','Gabarito','Acerto_x','Acerto_y','Tempo na questão_x','Tempo na questão_y']]
         tabela_detalhes_aluno4.rename(columns = {'Disciplina':'Área do conhecimento','Acerto_x':'Resultado Individual','Acerto_y':'Resultado Geral','Tempo na questão_x':'Tempo na questão','Tempo na questão_y':'Média geral'}, inplace = True)
-        tabela_detalhes_aluno5 = tabela_detalhes_aluno4.sort_values(by = 'Número da questão', ascending = True).reset_index()
+        #tabela_detalhes_aluno5 = tabela_detalhes_aluno4.sort_values(by = 'Número da questão', ascending = True).reset_index()
         
-        tabela_final = tabela_questoes(tabela_detalhes_aluno5,'Número da questão','Área do conhecimento','Assunto','Resposta do aluno(a)','Gabarito','Resultado Individual','Resultado Geral','Tempo na questão','Média geral',cor_texto,cor_back)
+        tabela_final = tabela_questoes(tabela_detalhes_aluno4,'Número da questão','Área do conhecimento','Assunto','Resposta do aluno(a)','Gabarito','Resultado Individual','Resultado Geral','Tempo na questão','Média geral',cor_texto,cor_back)
         
         with st.container():
             col1, col2, col3 = st.columns([0.5, 20, 0.5])
@@ -2465,7 +2460,7 @@ if login_aluno != '':
     st.markdown(html_br, unsafe_allow_html=True)
     st.markdown(html_header_2fase, unsafe_allow_html=True)
     
-    #st.dataframe(base_resultados_2fase2)
+    
     for i in range(len(base_resultados_2fase['Login do aluno(a)'])):
         base_resultados_2fase['Tema 1 - Comunicação assertiva'][i] = float(str(base_resultados_2fase['Tema 1 - Comunicação assertiva'][i]).replace(',','.'))
         base_resultados_2fase['Tema 1 - Interação com pessoas'][i] = float(str(base_resultados_2fase['Tema 1 - Interação com pessoas'][i]).replace(',','.'))
@@ -3136,9 +3131,10 @@ if login_aluno != '':
                 st.markdown(tabela_final2, unsafe_allow_html=True)
             with col3:
                 st.write("")
-
+    
     primeira_fase = resultados_gerais5
-    primeira_fase2 = primeira_fase.drop(columns = ['Número da questão','Tempo na questão','Valor da questão','Unnamed: 3','Acerto'])
+    
+    primeira_fase2 = primeira_fase.drop(columns = ['Número da questão','Tempo na questão','Valor da questão','Unnamed: 11','Acerto'])
     segunda_fase = base_resultados_2fase
     segunda_fase2 = segunda_fase.drop(columns = ['Tema 1 - Comunicação assertiva','Tema 2 - Comunicação assertiva','Tema 3 - Comunicação assertiva','Tema 4 - Comunicação assertiva', 'Tema 1 - Interação com pessoas', 'Tema 2 - Interação com pessoas', 'Tema 3 - Interação com pessoas', 'Tema 4 - Interação com pessoas', 'Tema 1 - Pensamento crítico', 'Tema 2 - Pensamento crítico', 'Tema 3 - Pensamento crítico', 'Tema 4 - Pensamento crítico', 'Tema 1 - Aprender a aprender', 'Tema 2 - Aprender a aprender']) 
     primeira_fase2.rename(columns = {'Nota na questão':'Nota 1º fase'}, inplace = True)
@@ -3171,6 +3167,7 @@ if login_aluno != '':
     
     #st.dataframe(base_resultados_2fase2)
     resultado_final2 = resultado_final[resultado_final['Nota 2º fase'] >= 0]
+    
     resultado_finalaux = resultado_final[resultado_final['Nota 2º fase'] > 0]
     numero_candidatos = len(resultado_finalaux['Nome do aluno(a)'])
 
