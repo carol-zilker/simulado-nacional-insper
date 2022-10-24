@@ -2926,7 +2926,7 @@ if login_aluno != '':
     tabela_final_temas_debate = fun_tabela_temas_debate(tabela_temas_debate,'Temas',cor_texto_debate,cor_back_debate)
 
     with st.container():
-            col1, col2, col3 = st.columns([2, 20, 2])
+            col1, col2, col3 = st.columns([6, 20, 6])
             with col1:
                 st.write("")
             with col2:
@@ -2937,7 +2937,7 @@ if login_aluno != '':
     st.markdown(html_br, unsafe_allow_html=True)
 
     with st.container():
-            col1, col2, col3 = st.columns([6, 20, 8])
+            col1, col2, col3 = st.columns([6, 20, 6])
             with col1:
                 st.write("")
             with col2:
